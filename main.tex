@@ -1,0 +1,488 @@
+\documentclass[
+	% -- opções da classe memoir --
+	12pt,				% tamanho da fonte
+	openright,			% capítulos começam em pág ímpar (insere página vazia caso preciso)
+% 	twoside,			% para impressão em recto e verso.
+    oneside,
+	a4paper,			% tamanho do papel. 
+	% -- opções da classe abntex2 --
+	chapter=TITLE,
+% 	section=Title,
+% 	subsection=Title,
+% 	subsubsection=Title,
+	% -- opções do pacote babel --
+	english,			% idioma adicional para hifenização
+% 	french,				% idioma adicional para hifenização
+% 	spanish,			% idioma adicional para hifenização
+	brazil				% o último idioma é o principal do documento
+	]{./abntex2}
+
+% ---
+% Pacotes básicos 
+% ---
+\usepackage{lmodern}		% Usa a fonte Latin Modern			
+\usepackage[T1]{fontenc}	% Selecao de codigos de fonte.
+\usepackage[utf8]{inputenc}	% Codificacao do documento 
+\usepackage{indentfirst}	% Indenta o primeiro parágrafo de cada seção.
+\usepackage{color}			% Controle das cores
+\usepackage{graphicx}		% Inclusão de gráficos
+\usepackage{microtype} 		% para melhorias de justificação
+% ---
+		
+% ---
+% Pacotes adicionais, usados apenas no exemplo
+% ---
+\usepackage{lipsum} % para geração de dummy text
+% ---
+
+% ---
+% Pacotes de citações
+% ---
+\usepackage[brazilian,hyperpageref]{backref} % Paginas com as citações na bibl
+\usepackage[num]{./abntex2cite}	% Citações padrão ABNT
+\citebrackets[]
+
+% --- 
+% CONFIGURAÇÕES DE PACOTES
+% --- 
+
+% % ---
+% % Configurações do pacote backref
+% % Usado sem a opção hyperpageref de backref
+% \renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
+% % Texto padrão antes do número das páginas
+% \renewcommand{\backref}{}
+% % Define os textos da citação
+% \renewcommand*{\backrefalt}[4]{
+% 	\ifcase #1 %
+% 		Nenhuma citação no texto.%
+% 	\or
+% 		Citado na página #2.%
+% 	\else
+% 		Citado #1 vezes nas páginas #2.%
+% 	\fi}%
+% % ---
+
+% ---
+% Informações de dados para CAPA e FOLHA DE ROSTO
+% ---
+\usepackage{abntex2ime}
+\titulo{Modelo Canônico de Trabalho Acadêmico com \abnTeX\space v0.2}
+\autor{Equipe \abnTeX}
+\local{Rio de Janeiro}
+\data{2019}
+\datadefesa{30 de maio de 2019}
+\orientador{Lauro César Araujo}
+\coorientador{Equipe \abnTeX}
+\instituicao{Instituto Militar de Engenharia}
+% departamento: apenas para a PG, comentar para PFC
+\departamento{Departamento de Engenharia de Defesa}
+% programaoudepartamento: Programa de PG ou Departamento da Graduação
+\programaoudepartamento{Programa de Pós-graduação em Engenharia de Defesa}
+% tipotrabalho: Tese de Doutorado, Dissertação de Mestrado, Projeto de Fim de Curso, Exame de Qualificação, Proposta de Tese, Proposta de Dissertação
+\tipotrabalho{Tese de Doutorado} 
+\titulopretendido{Doutor em Ciência em Engenharia de Defesa}
+\preambulo{\imprimirtipotrabalho\space apresentada ao \imprimirprogramaoudepartamento\space do \imprimirinstituicao, como requisito parcial para a obtenção do título de \imprimirtitulopretendido.}
+% ---
+
+
+% ---
+% Configurações de aparência do PDF final
+
+% % alterando o aspecto da cor azul
+% \definecolor{blue}{RGB}{41,5,195}
+
+% % informações do PDF
+% \makeatletter
+% \hypersetup{
+%  	%pagebackref=true,
+% 	pdftitle={\@title}, 
+% 	pdfauthor={\@author},
+% 	pdfsubject={\imprimirpreambulo},
+%     pdfcreator={LaTeX with abnTeX2},
+% 	pdfkeywords={abnt}{latex}{abntex}{abntex2}{trabalho acadêmico}, 
+% 	colorlinks=true, % false: boxed links; true: colored links
+% 	linkcolor=blue, % color of internal links
+% 	citecolor=blue,	% color of links to bibliography
+% 	filecolor=magenta, % color of file links
+% 	urlcolor=blue,
+% 	bookmarksdepth=4
+% }
+% \makeatother
+% % --- 
+
+% ---
+% Posiciona figuras e tabelas no topo da página quando adicionadas sozinhas
+% em um página em branco. Ver https://github.com/abntex/abntex2/issues/170
+\makeatletter
+\setlength{\@fptop}{5pt} % Set distance from top of page to first float
+\makeatother
+% ---
+
+% ---
+% Possibilita criação de Quadros e Lista de quadros.
+% Ver https://github.com/abntex/abntex2/issues/176
+%
+\newcommand{\quadroname}{Quadro}
+\newcommand{\listofquadrosname}{Lista de quadros}
+
+\newfloat[chapter]{quadro}{loq}{\quadroname}
+\newlistof{listofquadros}{loq}{\listofquadrosname}
+\newlistentry{quadro}{loq}{0}
+
+% configurações para atender às regras da ABNT
+\setfloatadjustment{quadro}{\centering}
+\counterwithout{quadro}{chapter}
+\renewcommand{\cftquadroname}{\quadroname\space} 
+\renewcommand*{\cftquadroaftersnum}{\hfill--\hfill}
+
+\setfloatlocations{quadro}{hbtp} % Ver https://github.com/abntex/abntex2/issues/176
+% ---
+
+% --- 
+% Espaçamentos entre linhas e parágrafos 
+% --- 
+
+% O tamanho do parágrafo é dado por:
+\setlength{\parindent}{1.3cm}
+
+% Controle do espaçamento entre um parágrafo e outro:
+\setlength{\parskip}{0.2cm}  % tente também \onelineskip
+
+% ---
+% compila o indice
+% ---
+\makeindex
+% ---
+
+% ----
+% Início do documento
+% ----
+\begin{document}
+
+% Seleciona o idioma do documento (conforme pacotes do babel)
+%\selectlanguage{english}
+\selectlanguage{brazil}
+
+% Retira espaço extra obsoleto entre as frases.
+\frenchspacing 
+
+% ----------------------------------------------------------
+% ELEMENTOS PRÉ-TEXTUAIS
+% ----------------------------------------------------------
+% \pretextual
+
+% ---
+% Capa
+% ---
+\imprimircapa
+% ---
+
+% ---
+% Folha de rosto
+% (o * indica que haverá a ficha bibliográfica)
+% ---
+\imprimirfolhaderosto*
+% ---
+
+% ---
+% Inserir a ficha bibliografica
+% ---
+
+% \begin{fichacatalografica}
+%     \includepdf{fig_ficha_catalografica.pdf}
+% \end{fichacatalografica}
+
+\begin{fichacatalografica}
+	\sffamily
+	\begin{normalsize}
+    \noindent{c\imprimirdata}\\
+    INSTITUTO MILITAR DE ENGENHARIA\\
+    Praça General Tibúrcio, 80 – Praia Vermelha\\
+    Rio de Janeiro – RJ CEP: 22290-270\\
+    \par\noindent
+    Este exemplar é de propriedade do Instituto Militar de Engenharia, que poderá incluí-lo em base de dados, armazenar em computador, microfilmar ou adotar qualquer forma de arquivamento.
+    \par\noindent
+    É permitida a menção, reprodução parcial ou integral e a transmissão entre bibliotecas deste trabalho, sem modificação de seu texto, em qualquer meio que esteja ou venha a ser fixado, para pesquisa acadêmica, comentários e citações, desde que sem finalidade comercial e que seja feita a referência bibliográfica completa.
+    \par\noindent
+    Os conceitos expressos neste trabalho são de responsabilidade do(s) autor(es) e do(s) orientador(es).
+    \end{normalsize}
+    
+	\vspace*{\fill}
+	
+	\begin{center}
+	\fbox{\begin{minipage}[c][8cm]{13.5cm}
+	\small
+	
+	\hspace{0.5cm}\parbox[t]{\textwidth-1cm}{
+	\imprimirautor \par
+	\imprimirtitulo\space / \imprimirautor. --
+	\imprimirlocal, \imprimirdata- \par
+	\thelastpage p. : il. (algumas color.) ; 30 cm.
+	}\par
+	\vspace{0.5cm}
+	\hspace{0.5cm}\parbox[t]{\textwidth-1cm}{
+	  \imprimirorientadorRotulo~\imprimirorientador\par
+      \imprimircoorientadorRotulo~\imprimircoorientador
+    }\par
+    \vspace{0.5cm}
+	\hspace{0.5cm}\parbox[t]{\textwidth}{
+	\imprimirtipotrabalho~--~\imprimirinstituicao\par
+	\imprimirdepartamento\par
+	\imprimirprogramaoudepartamento,\imprimirdata.
+	}\par
+    \vspace{0.5cm}
+	\hspace{0.5cm}\parbox[t]{\textwidth-1cm}{
+		1. Palavra-chave1.
+		2. Palavra-chave2.
+		3. Palavra-chave3.
+		I. Orientador.
+		II. Universidade xxx.
+		III. Faculdade de xxx.
+		IV. Título.
+	}
+	\end{minipage}}
+	\end{center}
+\end{fichacatalografica}
+% ---
+
+% ---
+% Inserir folha de aprovação
+% ---
+
+% \begin{folhadeaprovacao}
+% \includepdf{folhadeaprovacao_final.pdf}
+% \end{folhadeaprovacao}
+%
+\begin{folhadeaprovacao}
+    \begin{center}
+    {\ABNTEXchapterfont\bfseries\large\MakeUppercase\imprimirautor\par}
+    \vspace*{\fill}
+    {\ABNTEXchapterfont\bfseries\Large\imprimirtitulo\par}
+    \vspace*{\fill}
+    \begin{minipage}{\textwidth}
+        \imprimirpreambulo \par
+        \smallskip
+        {\imprimirorientadorRotulo~\imprimirorientador\par}
+        {\imprimircoorientadorRotulo~\imprimircoorientador}%
+    \end{minipage}%
+    \vspace*{\fill}
+    \end{center}
+    \begin{flushleft}
+    Aprovado em \imprimirlocal, \imprimirdatadefesa, pela seguinte banca examinadora:
+    \end{flushleft}
+      
+    \setlength{\ABNTEXsignwidth}{.9\textwidth}
+    \assinatura{Prof. \textbf{\imprimirorientador} - Ph.D do IME - Presidente}
+    \assinatura{Prof. \textbf{\imprimircoorientador} - Ph.D do LNCC}
+    \assinatura{Prof. \textbf{Convidado 1} - Ph.D do IMPA}
+    \assinatura{Prof. \textbf{Convidado 2} - Ph.D do LNCC}
+    \assinatura{Prof. \textbf{Convidado 3} - D.Sc da PUC}
+    \assinatura{Prof. \textbf{Convidado 4} - D.Sc da UFT}
+    \assinatura{Prof. \textbf{Convidado 5} - Docteur ENSAE do IME}
+    
+   \begin{center}
+    \vspace*{0.5cm}
+    {\large\imprimirlocal}
+    \par
+    {\large\imprimirdata}
+  \end{center}
+  
+\end{folhadeaprovacao}
+% ---
+
+% ---
+% Dedicatória
+% ---
+\begin{dedicatoria}
+   \vspace*{\fill}
+   \centering
+   \noindent
+   \textit{ Este trabalho é dedicado às crianças adultas que,\\
+   quando pequenas, sonharam em se tornar cientistas.} \vspace*{\fill}
+\end{dedicatoria}
+% ---
+
+% ---
+% Agradecimentos
+% ---
+\begin{agradecimentos}
+Os agradecimentos principais são direcionados à Gerald Weber, Miguel Frasson, Leslie H. Watter, Bruno Parente Lima, Flávio de Vasconcellos Corrêa, Otavio Real Salvador, Renato Machnievscz\footnote{Os nomes dos integrantes do primeiro projeto abn\TeX\ foram extraídos de \url{http://codigolivre.org.br/projects/abntex/}} e todos aqueles que contribuíram para que a produção de trabalhos acadêmicos conforme as normas ABNT com \LaTeX\ fosse possível.
+
+Agradecimentos especiais são direcionados ao Centro de Pesquisa em Arquitetura da Informação\footnote{\url{http://www.cpai.unb.br/}} da Universidade de Brasília (CPAI), ao grupo de usuários \emph{latex-br}\footnote{\url{http://groups.google.com/group/latex-br}} e aos novos voluntários do grupo \emph{\abnTeX}\footnote{\url{http://groups.google.com/group/abntex2} e \url{http://www.abntex.net.br/}}~que contribuíram e que ainda contribuirão para a evolução do \abnTeX.
+
+\end{agradecimentos}
+% ---
+
+% ---
+% Epígrafe
+% ---
+\begin{epigrafe}
+    \vspace*{\fill}
+	\begin{flushright}
+		\textit{``Não vos amoldeis às estruturas deste mundo, \\
+		mas transformai-vos pela renovação da mente, \\
+		a fim de distinguir qual é a vontade de Deus: \\
+		o que é bom, o que Lhe é agradável, o que é perfeito.\\
+		(Bíblia Sagrada, Romanos 12, 2)}
+	\end{flushright}
+\end{epigrafe}
+% ---
+
+% ---
+% RESUMOS
+% ---
+
+% resumo em português
+\setlength{\absparsep}{18pt} % ajusta o espaçamento dos parágrafos do resumo
+\begin{resumo}
+ Segundo a \citeonline[3.1-3.2]{NBR6028:2003}, o resumo deve ressaltar o
+ objetivo, o método, os resultados e as conclusões do documento. A ordem e a extensão
+ destes itens dependem do tipo de resumo (informativo ou indicativo) e do
+ tratamento que cada item recebe no documento original. O resumo deve ser
+ precedido da referência do documento, com exceção do resumo inserido no
+ próprio documento. (\ldots) As palavras-chave devem figurar logo abaixo do
+ resumo, antecedidas da expressão Palavras-chave:, separadas entre si por
+ ponto e finalizadas também por ponto.
+
+ \textbf{Palavras-chave}: latex. abntex. editoração de texto.
+\end{resumo}
+
+% resumo em inglês
+\begin{resumo}[Abstract]
+ \begin{otherlanguage*}{english}
+%  \linespread{1.3}
+ Segundo a \citeonline[3.1-3.2]{NBR6028:2003}, o resumo deve ressaltar o
+ objetivo, o método, os resultados e as conclusões do documento. A ordem e a extensão
+ destes itens dependem do tipo de resumo (informativo ou indicativo) e do
+ tratamento que cada item recebe no documento original. O resumo deve ser
+ precedido da referência do documento, com exceção do resumo inserido no
+ próprio documento. (\ldots) As palavras-chave devem figurar logo abaixo do
+ resumo, antecedidas da expressão Palavras-chave:, separadas entre si por
+ ponto e finalizadas também por ponto.
+   This is the english abstract.
+   \vspace{\onelineskip}
+ 
+   \noindent 
+   \textbf{Keywords}: latex. abntex. text editoration.
+ \end{otherlanguage*}
+\end{resumo}
+
+% ---
+% inserir lista de ilustrações
+% ---
+\pdfbookmark[0]{\listfigurename}{lof}
+\listoffigures*
+\cleardoublepage
+% ---
+
+% ---
+% inserir lista de quadros
+% ---
+\pdfbookmark[0]{\listofquadrosname}{loq}
+\listofquadros*
+\cleardoublepage
+% ---
+
+% ---
+% inserir lista de tabelas
+% ---
+\pdfbookmark[0]{\listtablename}{lot}
+\listoftables*
+\cleardoublepage
+% ---
+
+% ---
+% inserir lista de abreviaturas e siglas
+% ---
+\begin{siglas}
+  \item[ABNT] Associação Brasileira de Normas Técnicas
+  \item[abnTeX] ABsurdas Normas para TeX
+\end{siglas}
+% ---
+
+% ---
+% inserir lista de símbolos
+% ---
+\begin{simbolos}
+  \item[$ \Gamma $] Letra grega Gama
+  \item[$ \Lambda $] Lambda
+  \item[$ \zeta $] Letra grega minúscula zeta
+  \item[$ \in $] Pertence
+\end{simbolos}
+% ---
+
+% ---
+% inserir o sumario
+% ---
+\pdfbookmark[0]{\contentsname}{toc}
+\tableofcontents*
+\cleardoublepage
+% ---
+
+% ----------------------------------------------------------
+% ELEMENTOS TEXTUAIS
+% ----------------------------------------------------------
+\textual
+
+\include{intro_abntex}
+\include{abntex2-modelo-include-comandos}
+\include{cap-01}
+\include{cap-02}
+
+% ----------------------------------------------------------
+% Finaliza a parte no bookmark do PDF
+% para que se inicie o bookmark na raiz
+% e adiciona espaço de parte no Sumário
+% ----------------------------------------------------------
+\phantompart
+% ---
+% Conclusão
+% ---
+\chapter{Conclusão}
+% ---
+
+\lipsum[31-33]
+
+% ----------------------------------------------------------
+% ELEMENTOS PÓS-TEXTUAIS
+% ----------------------------------------------------------
+\postextual
+% ----------------------------------------------------------
+
+% ----------------------------------------------------------
+% Referências bibliográficas
+% ----------------------------------------------------------
+\bibliography{refs}
+
+% ----------------------------------------------------------
+% Apêndices
+% ----------------------------------------------------------
+
+% ---
+% Inicia os apêndices
+% ---
+\begin{apendicesenv}
+    \include{apendice}
+\end{apendicesenv}
+% ---
+
+% ----------------------------------------------------------
+% Anexos
+% ----------------------------------------------------------
+
+% ---
+% Inicia os anexos
+% ---
+\begin{anexosenv}
+    \include{anexo}
+\end{anexosenv}
+
+%---------------------------------------------------------------------
+% INDICE REMISSIVO
+%---------------------------------------------------------------------
+\phantompart
+\printindex
+%---------------------------------------------------------------------
+
+\end{document}
