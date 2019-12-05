@@ -26,6 +26,10 @@
 \providecommand{\imprimirprogramaoudepartamento}{}
 \newcommand{\programaoudepartamento}[1]{\renewcommand{\imprimirprogramaoudepartamento}{#1}}
 
+% Comandos de dados - cursocompleto
+\providecommand{\imprimircursocompleto}{}
+\newcommand{\cursocompleto}[1]{\renewcommand{\imprimircursocompleto}{#1}}
+
 % Comandos de dados - departamento
 \providecommand{\imprimirdepartamento}{}
 \newcommand{\departamento}[1]{\renewcommand{\imprimirdepartamento}{#1}}
@@ -45,7 +49,7 @@
   \begin{capa}%
     \begin{large}
     \begin{center}
-    {\ABNTEXchapterfont\bfseries INSTITUTO MILITAR DE ENGENHARIA \par}
+        {\ABNTEXchapterfont\bfseries MINISTÉRIO DA DEFESA\\EXÉRCITO BRASILEIRO\\DEPARTAMENTO DE CIÊNCIA E TECNOLOGIA\\INSTITUTO MILITAR DE ENGENHARIA\\ \imprimircursocompleto \par}
     \vspace*{7mm}
     \ABNTEXchapterfont\bfseries\MakeUppercase\imprimirautor
     \vfill
