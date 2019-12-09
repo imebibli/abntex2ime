@@ -42,6 +42,43 @@
 \providecommand{\imprimirdatadefesa}{}
 \newcommand{\datadefesa}[1]{\renewcommand{\imprimirdatadefesa}{#1}}
 
+% Autor
+\providecommand{\imprimirnomeautor}{}
+\newcommand{\nomeautor}[1]{\renewcommand{\imprimirnomeautor}{#1}}
+
+\providecommand{\imprimirsobrenomeautor}{}
+\newcommand{\sobrenomeautor}[1]{\renewcommand{\imprimirsobrenomeautor}{#1}}
+
+% Orientador
+\providecommand{\imprimirnomeorientador}{}
+\newcommand{\nomeorientador}[1]{\renewcommand{\imprimirnomeorientador}{#1}}
+
+\providecommand{\imprimirsobrenomeorientador}{}
+\newcommand{\sobrenomeorientador}[1]{\renewcommand{\imprimirsobrenomeorientador}{#1}}
+
+\providecommand{\imprimirtituloorientador}{}
+\newcommand{\tituloorientador}[1]{\renewcommand{\imprimirtituloorientador}{#1}}
+
+% Segundo Orientador
+\providecommand{\imprimirnomesegorientador}{}
+\newcommand{\nomesegorientador}[1]{\renewcommand{\imprimirnomesegorientador}{#1}}
+
+\providecommand{\imprimirsobrenomesegorientador}{}
+\newcommand{\sobrenomesegorientador}[1]{\renewcommand{\imprimirsobrenomesegorientador}{#1}}
+
+\providecommand{\imprimirtitulosegorientador}{}
+\newcommand{\titulosegorientador}[1]{\renewcommand{\imprimirtitulosegorientador}{#1}}
+
+% Coorientador
+\providecommand{\imprimirnomecoorientador}{}
+\newcommand{\nomecoorientador}[1]{\renewcommand{\imprimirnomecoorientador}{#1}}
+
+\providecommand{\imprimirsobrenomecoorientador}{}
+\newcommand{\sobrenomecoorientador}[1]{\renewcommand{\imprimirsobrenomecoorientador}{#1}}
+
+\providecommand{\imprimirtitulocoorientador}{}
+\newcommand{\titulocoorientador}[1]{\renewcommand{\imprimirtitulocoorientador}{#1}}
+
 % ---
 % CAPA
 % ---
@@ -50,9 +87,9 @@
     \begin{large}
     \begin{center}
         {\ABNTEXchapterfont\bfseries MINISTÉRIO DA DEFESA\\EXÉRCITO BRASILEIRO\\DEPARTAMENTO DE CIÊNCIA E TECNOLOGIA\\INSTITUTO MILITAR DE ENGENHARIA\\ \imprimircursocompleto \par}
-    \vspace*{7mm}
-    \ABNTEXchapterfont\bfseries\MakeUppercase\imprimirautor
-    \vfill
+    \vspace*{35mm}
+    \ABNTEXchapterfont\bfseries\MakeUppercase\imprimirautor\\
+    \vspace*{35mm}
     \ABNTEXchapterfont\bfseries\MakeUppercase\imprimirtitulo
     \vfill
     \large\imprimirlocal \\
@@ -72,12 +109,12 @@
     {\ABNTEXchapterfont\bfseries\large\MakeUppercase\imprimirautor}
     \vspace*{\fill}
     \begin{center}
-    \ABNTEXchapterfont\bfseries\Large\imprimirtitulo
+    \ABNTEXchapterfont\bfseries\large\MakeUppercase\imprimirtitulo
     \end{center}
     \vspace*{\fill}
     \abntex@ifnotempty{\imprimirpreambulo}{%
-        \hspace{.45\textwidth}
-        \begin{minipage}{.5\textwidth}
+        \hspace{.3\textwidth}
+        \begin{minipage}{.65\textwidth}
             \SingleSpacing
             \imprimirpreambulo \par
             \medskip

@@ -1,0 +1,135 @@
+\providecommand{\abntreprintinfo}[1]{%
+ \citeonline{#1}}
+\begin{thebibliography}{}
+\providecommand{\abntrefinfo}[3]{}
+\providecommand{\abntbstabout}[1]{}
+\abntbstabout{v-1.9.6 }
+
+\bibitem{NBR6028:2003}
+\abntrefinfo{ABNT}{ABNT}{2003}
+{ASSOCIA{\c C}\~AO BRASILEIRA DE NORMAS T\'ECNICAS. \emph{{NBR} 6028}: Resumo -
+  apresenta{\c c}{\~a}o.
+Rio de Janeiro, 2003. 2~p.}
+
+\bibitem{abntex2classe}
+\abntrefinfo{Araujo}{ARAUJO}{2015a}
+{ARAUJO, L.~C. \emph{A classe abntex2: Modelo can{\^o}nico de trabalhos
+  acad{\^e}micos brasileiros compat{\'\i}vel com as normas ABNT NBR 14724:2011,
+  ABNT NBR 6024:2012 e outras}.
+[S.l.], 2015. Dispon{\'\i}vel em: \url{http://www.abntex.net.br/}.}
+
+\bibitem{abntex2-wiki-como-customizar}
+\abntrefinfo{Araujo}{ARAUJO}{2015b}
+{ARAUJO, L.~C. \emph{Como customizar o abnTeX2}. 2015. Wiki do abnTeX2.
+Dispon{\'\i}vel em:
+  \url{https://github.com/abntex/abntex2/wiki/ComoCustomizar}. Acesso em: 27
+  abr 2015.}
+
+\bibitem{abntex2cite}
+\abntrefinfo{Araujo}{ARAUJO}{2015c}
+{ARAUJO, L.~C. \emph{O pacote abntex2cite: Estilos bibliogr{\'a}ficos
+  compat{\'\i}veis com a ABNT NBR 6023}.
+[S.l.], 2015. Dispon{\'\i}vel em: \url{http://www.abntex.net.br/}.}
+
+\bibitem{abntex2cite-alf}
+\abntrefinfo{Araujo}{ARAUJO}{2015d}
+{ARAUJO, L.~C. \emph{O pacote abntex2cite: t{\'o}picos espec{\'\i}ficos da ABNT
+  NBR 10520:2002 e o estilo bibliogr{\'a}fico alfab{\'e}tico (sistema
+  autor-data)}.
+[S.l.], 2015. Dispon{\'\i}vel em: \url{http://www.abntex.net.br/}.}
+
+\bibitem{memoir}
+\abntrefinfo{Wilson e Madsen}{WILSON; MADSEN}{2010}
+{WILSON, P.; MADSEN, L. \emph{The Memoir Class for Configurable Typesetting -
+  User Guide}.
+Normandy Park, WA, 2010. Dispon{\'\i}vel em:
+  \url{http://mirrors.ctan.org/macros/latex/contrib/memoir/memman.pdf}. Acesso
+  em: 19 dez. 2012.}
+
+\bibitem{Salles2014}
+\abntrefinfo{Abreu e Salles}{ABREU; SALLES}{2014}
+{ABREU, C.~S. de; SALLES, R.~M. Modeling message diffusion in epidemical dtn.
+\emph{Ad Hoc Networks}, v.~16, n.~2, p. 197--209, 2014.}
+
+\bibitem{Justel2014}
+\abntrefinfo{Abreu et al.}{ABREU et al.}{2014}
+{ABREU, N. et al. Ordering trees and graphs with few cycles by algebraic
+  connectivity.
+\emph{Linear Algebra and its Applications}, v.~458, 2014.
+31 nov. de 2015.
+Dispon{\'\i}vel em:
+  \url{http://www.journals.elsevier.com/linear-algebra-and-its-applications/}.}
+
+\bibitem{Goldschmidt2005}
+\abntrefinfo{Goldschmidt e Passos}{GOLDSCHMIDT; PASSOS}{2005}
+{GOLDSCHMIDT, R.~R.; PASSOS, E. \emph{Data Mining: Um guia prático}. 2. ed.
+  Rio de Janeiro: Campus, 2005. 476~p.}
+
+\bibitem{Rakocevic2014}
+\abntrefinfo{Rakocevic}{RAKOCEVIC}{2014}
+{RAKOCEVIC, V. Clustering for networks of moving objects.
+In:  \underline{\ \ \ \ \ \ \ \ }. \emph{Wireless networking for moving
+  objects}. Berlim: Springer International Publishing, 2014. p. 70--87.}
+
+\bibitem{Lara2014}
+\abntrefinfo{Lara e Choren}{LARA; CHOREN}{2014}
+{LARA, P.; CHOREN, R. A protocol for command and control systems integration.
+  In:  \emph{International Conference on Enterprise Information Systems}.
+  Setúbal: SciTePress, 2014.  (Workshop on Enterprise Architecture, 4), p.
+  484--489.}
+
+\bibitem{Soares2013}
+\abntrefinfo{Soares et al.}{SOARES et al.}{2013}
+{SOARES, M. et al. Using tranformation rules to align requirements and
+  archictectural models. In:  \emph{Simpósio Brasileiro de Engenharia de
+  Software}. Porto Alegre: Sociedade Brasileira de Computação, 2013. p.
+  26--35. 31 nov. de 2015. Dispon{\'\i}vel em:
+  \url{http://cbsoft2013.unb.br/wp-content/uploads/2013/10/SBES-completo.pdf}.}
+
+\bibitem{Yoko2003}
+\abntrefinfo{Cavalcanti}{CAVALCANTI}{2003}
+{CAVALCANTI, M. C.~R.
+\emph{Gerência de recursos científicos: Apoiando a realização de
+  experimentos in silico}.
+100~p. Tese (Doutorado) --- Universidade Federal do Rio de Janeiro, Rio de
+  Janeiro, 2003.}
+
+\bibitem{Dias2013}
+\abntrefinfo{Dias}{DIAS}{2013}
+{DIAS, G.~M. de S.
+\emph{Modelo epidemiológico SIR aplicado a redes Tolerantes a Atrasos e
+  Desconexões}.
+134~p. Mestrado em Sistemas e Computação --- Instituto Militar de Engenharia,
+  Rio de Janeiro, 2013. 31 nov. de 2015.
+Dispon{\'\i}vel em:
+  \url{http://www.comp.ime.eb.br/images/repositorio-dissertacoes/2013-Gabriela\\_Dias.pdf}.}
+
+\bibitem{Gubitoso1992}
+\abntrefinfo{Gubitoso e Zara}{GUBITOSO; ZARA}{1992}
+{GUBITOSO, M.~D.; ZARA, C. \emph{Máquina worm: simulador de máquinas
+  paralelas}.
+São Paulo, 1992. 29~p.}
+
+\bibitem{icse2015}
+\abntrefinfo{Proceedings}{PROCEEDINGS}{2015}
+{PROCEEDINGS,  (ICSE). Florença: IEEE, 2015.
+31 nov. de 2015.
+Dispon{\'\i}vel em:
+  \url{http://ieeexplore.ieee.org/xpl/mostRecentIssue.jsp?punumber=7174815}.}
+
+\bibitem{Araujo2015}
+\abntrefinfo{Araujo e Reinaldo}{ARAUJO; REINALDO}{2015}
+{ARAUJO, A.~F.; REINALDO, M. B.~C.
+\emph{Instalação e configuração de serviços Web para disponibilização de
+  dados espaciais em operações militares}.
+ 73~p. --- Instituto Militar de Engenharia, Rio de Janeiro, 2015.}
+
+\bibitem{Folha2015}
+\abntrefinfo{Paulo}{PAULO}{2015}
+{PAULO, F. de S. \emph{Instituto Militar de Engenharia (IME) - Perfil de
+  Universidades e Faculdades - Ranking Universitário Folha - 2015}. 2015.
+31 nov. de 2015.
+Dispon{\'\i}vel em:
+  \url{http://ruf.folha.uol.com.br/2015/perfil/instituto-militar-de-engenharia-ime-633.shtml}.}
+
+\end{thebibliography}

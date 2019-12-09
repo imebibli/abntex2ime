@@ -27,6 +27,8 @@
 \usepackage{color}			% Controle das cores
 \usepackage{graphicx}		% Inclusão de gráficos
 \usepackage{microtype} 		% para melhorias de justificação
+\usepackage{setspace} % para espacamento simples no resumo
+\usepackage{fontawesome} % para simbolos diferentes
 % ---
 		
 % ---
@@ -66,22 +68,50 @@
 % Informações de dados para CAPA e FOLHA DE ROSTO
 % ---
 \usepackage{abntex2ime}
-\titulo{Modelo Canônico de Trabalho Acadêmico com \abnTeX\space v0.2}
-\autor{Equipe \abnTeX}
+\titulo{Impacto de Malwares Reais em Sistemas Industriais com Classificação Supervisionada Usando Aprendizado de Máquina}
+\nomeautor{Otavio Augusto Maciel}
+\sobrenomeautor{Camargo}
+\autor{\imprimirnomeautor\ \imprimirsobrenomeautor}
+
 \local{Rio de Janeiro}
 \data{2019}
-\datadefesa{30 de maio de 2019}
-\orientador{Lauro César Araujo}
-\coorientador{Equipe \abnTeX}
+\datadefesa{03 de dezembro de 2019}
+
+\nomeorientador{Anderson Fernandes Pereira dos}
+\sobrenomeorientador{Santos}
+\tituloorientador{D.Sc.}
+\orientador{\imprimirnomeorientador\ \imprimirsobrenomeorientador}
+
+% Segundo orientador - NÃO IMPLEMENTADO
+%\nomesegorientador{Julio Cesar}
+%\sobrenomesegorientador{Duarte}
+%\titulosegorientador{D.Sc.}
+%\newcommand{\segorientador}{\imprimirnomesegorientador\ \imprimirsobrenomesegorientador}
+
+% Coorientador
+\nomecoorientador{Julio Cesar}
+\sobrenomecoorientador{Duarte}
+\titulocoorientador{D.Sc.}
+% Deixar em branco caso não tenha
+\coorientador{\imprimirnomecoorientador\ \imprimirsobrenomecoorientador}
+
 \instituicao{Instituto Militar de Engenharia}
 % departamento: apenas para a PG, comentar para PFC
-\departamento{Departamento de Engenharia de Defesa}
+\departamento{Seção de Engenharia da Computação}
 % programaoudepartamento: Programa de PG ou Departamento da Graduação
-\programaoudepartamento{Programa de Pós-graduação em Engenharia de Defesa}
-\cursocompleto{CURSO DE MESTRADO EM SISTEMAS E COMPUTAÇÃO}
+\newcommand{\programaresumido}{Sistemas e Computação}
+\programaoudepartamento{Programa de Pós-graduação em\ \programaresumido}
+\newcommand{\tipotrabalhoa}{Dissertação}
+\newcommand{\tipotrabalhob}{Mestrado}
+\newcommand{\tipotitulo}{Mestre}
+\newcommand{\areadoconhecimento}{Ciência da Computação}
+\cursocompleto{\MakeTextUppercase{Curso de\ \tipotrabalhob\ em\ \programaresumido}}
+\newcommand{\keywordone}{Machine Learning}
+\newcommand{\keywordtwo}{SCADA}
+\newcommand{\keywordthree}{Malware}
 % tipotrabalho: Tese de Doutorado, Dissertação de Mestrado, Projeto de Fim de Curso, Exame de Qualificação, Proposta de Tese, Proposta de Dissertação
-\tipotrabalho{Tese de Doutorado} 
-\titulopretendido{Doutor em Ciência em Engenharia de Defesa}
+\tipotrabalho{\tipotrabalhoa\ de\ \tipotrabalhob}
+\titulopretendido{\tipotitulo\ em\ \areadoconhecimento}
 \preambulo{\imprimirtipotrabalho\space apresentada ao \imprimirprogramaoudepartamento\space do \imprimirinstituicao, como requisito parcial para a obtenção do título de \imprimirtitulopretendido.}
 % ---
 
@@ -93,22 +123,23 @@
 % \definecolor{blue}{RGB}{41,5,195}
 
 % % informações do PDF
-% \makeatletter
-% \hypersetup{
-%  	%pagebackref=true,
-% 	pdftitle={\@title}, 
-% 	pdfauthor={\@author},
-% 	pdfsubject={\imprimirpreambulo},
-%     pdfcreator={LaTeX with abnTeX2},
-% 	pdfkeywords={abnt}{latex}{abntex}{abntex2}{trabalho acadêmico}, 
-% 	colorlinks=true, % false: boxed links; true: colored links
-% 	linkcolor=blue, % color of internal links
-% 	citecolor=blue,	% color of links to bibliography
-% 	filecolor=magenta, % color of file links
-% 	urlcolor=blue,
-% 	bookmarksdepth=4
-% }
-% \makeatother
+\makeatletter
+\hypersetup{
+    %pagebackref=true,
+    pdftitle={\@title}, 
+    pdfauthor={\@author},
+    pdfsubject={\imprimirpreambulo},
+    pdfcreator={LaTeX with abnTeX2},
+    pdfkeywords={\keywordone}{\keywordtwo}{\keywordthree}{abntex2}{trabalho acadêmico}{latex}, 
+    colorlinks=true, % false: boxed links; true: colored links
+    linkcolor=black, % color of internal links
+    citecolor=black,	% color of links to bibliography
+    filecolor=black, % color of file links
+    urlcolor=black,
+    bookmarksdepth=4
+}
+\makeatother
+% % --- 
 % % --- 
 
 % ---
@@ -194,55 +225,53 @@
 % \end{fichacatalografica}
 
 \begin{fichacatalografica}
-	\sffamily
-	\begin{normalsize}
-    \noindent{C\imprimirdata}\\
-    INSTITUTO MILITAR DE ENGENHARIA\\
-    Praça General Tibúrcio, 80 – Praia Vermelha\\
-    Rio de Janeiro – RJ CEP: 22290-270\\
-    \par\noindent
-    Este exemplar é de propriedade do Instituto Militar de Engenharia, que poderá incluí-lo em base de dados, armazenar em computador, microfilmar ou adotar qualquer forma de arquivamento.
-    \par\noindent
-    É permitida a menção, reprodução parcial ou integral e a transmissão entre bibliotecas deste trabalho, sem modificação de seu texto, em qualquer meio que esteja ou venha a ser fixado, para pesquisa acadêmica, comentários e citações, desde que sem finalidade comercial e que seja feita a referência bibliográfica completa.
-    \par\noindent
-    Os conceitos expressos neste trabalho são de responsabilidade do(s) autor(es) e do(s) orientador(es).
+    \sffamily
+    \begin{normalsize}
+        \noindent{\faCopyright\imprimirdata}\\
+        INSTITUTO MILITAR DE ENGENHARIA\\
+        Praça General Tibúrcio, 80 – Praia Vermelha\\
+        Rio de Janeiro – RJ CEP: 22290-270\\
+        \par\noindent
+        Este exemplar é de propriedade do Instituto Militar de Engenharia, que poderá incluí-lo em base de dados, armazenar em computador, microfilmar ou adotar qualquer forma de arquivamento.
+        \par\noindent
+        É permitida a menção, reprodução parcial ou integral e a transmissão entre bibliotecas deste trabalho, sem modificação de seu texto, em qualquer meio que esteja ou venha a ser fixado, para pesquisa acadêmica, comentários e citações, desde que sem finalidade comercial e que seja feita a referência bibliográfica completa.
+        \par\noindent
+        Os conceitos expressos neste trabalho são de responsabilidade do autor e dos orientadores.
     \end{normalsize}
     
-	\vspace*{\fill}
-	
-	\begin{center}
-	\fbox{\begin{minipage}[c][8cm]{13.5cm}
-	\small
-	
-	\hspace{0.5cm}\parbox[t]{\textwidth-1cm}{
-	\imprimirautor \par
-	\imprimirtitulo\space / \imprimirautor. --
-	\imprimirlocal, \imprimirdata- \par
-	\thelastpage p. : il. (algumas color.) ; 30 cm.
-	}\par
-	\vspace{0.5cm}
-	\hspace{0.5cm}\parbox[t]{\textwidth-1cm}{
-	  \imprimirorientadorRotulo~\imprimirorientador\par
-      \imprimircoorientadorRotulo~\imprimircoorientador
-    }\par
-    \vspace{0.5cm}
-	\hspace{0.5cm}\parbox[t]{\textwidth}{
-	\imprimirtipotrabalho~--~\imprimirinstituicao\par
-	\imprimirdepartamento\par
-	\imprimirprogramaoudepartamento,\imprimirdata.
-	}\par
-    \vspace{0.5cm}
-	\hspace{0.5cm}\parbox[t]{\textwidth-1cm}{
-		1. Palavra-chave1.
-		2. Palavra-chave2.
-		3. Palavra-chave3.
-		I. Orientador.
-		II. Universidade xxx.
-		III. Faculdade de xxx.
-		IV. Título.
-	}
-	\end{minipage}}
-	\end{center}
+    \vspace*{\fill}
+    
+    \begin{center}
+        \fbox{\begin{minipage}[c][10cm]{13.5cm}
+                \small
+                
+                \hspace{0.5cm}\parbox[t]{\textwidth-1cm}{
+                    \imprimirsobrenomeautor, \imprimirnomeautor \par
+                    \hspace{0.5cm}\imprimirtitulo\space / \imprimirautor. --
+                    \imprimirlocal, \imprimirdata. \par
+                    \hspace{0.5cm}\thelastpage\ f.
+                }\par
+                \vspace{0.5cm}
+                \hspace{0.5cm}\parbox[t]{\textwidth-1cm}{
+                    \imprimirorientadorRotulo~\imprimirorientador.\par
+                    \vspace{0.5cm}
+                    \imprimircoorientadorRotulo~\imprimircoorientador.
+                }\par
+                \vspace{0.5cm}
+                \hspace{0.5cm}\parbox[t]{\textwidth-1cm}{
+                    \tipotrabalhoa\  (\MakeLowercase{\tipotrabalhob})~--~\imprimirinstituicao,\ \programaresumido,\ \imprimirdata.
+                }\par
+                \vspace{0.5cm}
+                \hspace{0.5cm}\parbox[t]{\textwidth-1cm}{
+                    \hspace{0.5cm}1. \keywordone.
+                    2. \keywordtwo.
+                    3. \keywordthree.
+                    I. \imprimirsobrenomeorientador, \imprimirnomeorientador, orient.
+                    II. \imprimirsobrenomecoorientador, \imprimirnomecoorientador, coorient.
+                    III. Título
+                }
+        \end{minipage}}
+    \end{center}
 \end{fichacatalografica}
 % ---
 
@@ -256,38 +285,36 @@
 %
 \begin{folhadeaprovacao}
     \begin{center}
-    {\ABNTEXchapterfont\bfseries\large\MakeUppercase\imprimirautor\par}
-    \vspace*{\fill}
-    {\ABNTEXchapterfont\bfseries\Large\imprimirtitulo\par}
-    \vspace*{\fill}
-    \begin{minipage}{\textwidth}
-        \imprimirpreambulo \par
-        \smallskip
-        {\imprimirorientadorRotulo~\imprimirorientador\par}
-        {\imprimircoorientadorRotulo~\imprimircoorientador}%
-    \end{minipage}%
-    \vspace*{\fill}
+        {\ABNTEXchapterfont\bfseries\large\MakeUppercase\imprimirautor\par}
+        \vspace*{\fill}
+        {\ABNTEXchapterfont\bfseries\Large\imprimirtitulo\par}
+        \vspace*{\fill}
+        \begin{minipage}{\textwidth}
+            \imprimirpreambulo \par
+            \smallskip
+            {\imprimirorientadorRotulo~\imprimirorientador\par}
+            {\imprimircoorientadorRotulo~\imprimircoorientador}%
+        \end{minipage}%
+        \vspace*{\fill}
     \end{center}
     \begin{flushleft}
-    Aprovado em \imprimirlocal, \imprimirdatadefesa, pela seguinte banca examinadora:
+        Aprovado em \imprimirlocal, \imprimirdatadefesa, pela seguinte banca examinadora:
     \end{flushleft}
-      
-    \setlength{\ABNTEXsignwidth}{.9\textwidth}
-    \assinatura{Prof. \textbf{\imprimirorientador} - Ph.D do IME - Presidente}
-    \assinatura{Prof. \textbf{\imprimircoorientador} - Ph.D do LNCC}
-    \assinatura{Prof. \textbf{Convidado 1} - Ph.D do IMPA}
-    \assinatura{Prof. \textbf{Convidado 2} - Ph.D do LNCC}
-    \assinatura{Prof. \textbf{Convidado 3} - D.Sc da PUC}
-    \assinatura{Prof. \textbf{Convidado 4} - D.Sc da UFT}
-    \assinatura{Prof. \textbf{Convidado 5} - Docteur ENSAE do IME}
     
-   \begin{center}
-    \vspace*{0.5cm}
-    {\large\imprimirlocal}
-    \par
-    {\large\imprimirdata}
-  \end{center}
-  
+    \setlength{\ABNTEXsignwidth}{.9\textwidth}
+    \assinatura{\textbf{\imprimirorientador} - \imprimirtituloorientador\ do IME - Presidente}
+    \assinatura{\textbf{\imprimircoorientador} - \imprimirtitulocoorientador\ do IME}
+    \assinatura{\textbf{Paulo Cesar Pellanda} - Ph.D do IME}
+    \assinatura{\textbf{Elson Costa Gomes} - D.Sc. da FPTI-BR}
+    \assinatura{\textbf{Lilian Kawakami Carvalho} - D.Sc da UFRJ}
+    
+    \begin{center}
+        \vspace*{0.5cm}
+        {\large\imprimirlocal}
+        \par
+        {\large\imprimirdata}
+    \end{center}
+    
 \end{folhadeaprovacao}
 % ---
 
@@ -336,6 +363,7 @@ Agradecimentos especiais são direcionados ao Centro de Pesquisa em Arquitetura 
 % resumo em português
 \setlength{\absparsep}{18pt} % ajusta o espaçamento dos parágrafos do resumo
 \begin{resumo}
+\SingleSpacing
  Segundo a \citeonline[3.1-3.2]{NBR6028:2003}, o resumo deve ressaltar o
  objetivo, o método, os resultados e as conclusões do documento. A ordem e a extensão
  destes itens dependem do tipo de resumo (informativo ou indicativo) e do
@@ -345,13 +373,14 @@ Agradecimentos especiais são direcionados ao Centro de Pesquisa em Arquitetura 
  resumo, antecedidas da expressão Palavras-chave:, separadas entre si por
  ponto e finalizadas também por ponto.
 
- \textbf{Palavras-chave}: latex. abntex. editoração de texto.
+ \textbf{Palavras-chave}: \keywordone. \keywordtwo. \keywordthree.
 \end{resumo}
 
 % resumo em inglês
 \begin{resumo}[Abstract]
  \begin{otherlanguage*}{english}
 %  \linespread{1.3}
+\SingleSpacing
  Segundo a \citeonline[3.1-3.2]{NBR6028:2003}, o resumo deve ressaltar o
  objetivo, o método, os resultados e as conclusões do documento. A ordem e a extensão
  destes itens dependem do tipo de resumo (informativo ou indicativo) e do
@@ -364,7 +393,7 @@ Agradecimentos especiais são direcionados ao Centro de Pesquisa em Arquitetura 
    \vspace{\onelineskip}
  
    \noindent 
-   \textbf{Keywords}: latex. abntex. text editoration.
+   \textbf{Palavras-chave}: \keywordone. \keywordtwo. \keywordthree.
  \end{otherlanguage*}
 \end{resumo}
 
