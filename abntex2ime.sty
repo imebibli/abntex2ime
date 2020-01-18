@@ -22,62 +22,101 @@
 
 \ProvidesPackage{abntex2ime}[2019/28/05 Criacao desta customizacao do abnTeX2]
 
-% Comandos de dados - programaoudepartamento
+\usepackage{listofitems}
+
+\def\versaoDocumento{v0.6}
+
+
 \providecommand{\imprimirprogramaoudepartamento}{}
-\newcommand{\programaoudepartamento}[1]{\renewcommand{\imprimirprogramaoudepartamento}{#1}}
+\providecommand{\imprimirprogramaoudepartamentocompleto}{}
+\newcommand{\programapgdepartamento}[1]{
+% programapgdepartamento: Programa de PG ou Departamento da Graduação
+    \renewcommand{\imprimirprogramaoudepartamento}{#1}
+    \renewcommand{\imprimirprogramaoudepartamentocompleto}{Programa de Pós-graduação em\ #1}
+}
 
-% Comandos de dados - cursocompleto
+\providecommand{\imprimirnivelestudo}{}
 \providecommand{\imprimircursocompleto}{}
-\newcommand{\cursocompleto}[1]{\renewcommand{\imprimircursocompleto}{#1}}
-
-% Comandos de dados - departamento
-\providecommand{\imprimirdepartamento}{}
-\newcommand{\departamento}[1]{\renewcommand{\imprimirdepartamento}{#1}}
-
-% Comandos de dados - titulopretendido
 \providecommand{\imprimirtitulopretendido}{}
-\newcommand{\titulopretendido}[1]{\renewcommand{\imprimirtitulopretendido}{#1}}
+\newcommand{\nivelestudo}[1]{ 
+    % Graduação, Mestrado ou Doutorado
+    \edef\first{#1}\edef\second{Doutorado}\ifx\first\second
+        \def\titulonivelestudo{Doutor em Ciência}
+        \newcommand{\imprimirtipodocumentonivelestudo}{Tese}
+        \def\tipodocumentocompleto{Tese de #1}
+    \else
+        \edef\second{Mestrado}\ifx\first\second
+            \def\titulonivelestudo{Mestre em Ciência}
+            \newcommand{\imprimirtipodocumentonivelestudo}{Dissertação}
+            \def\tipodocumentocompleto{Dissertação de #1}
+        \else
+            \def\titulonivelestudo{Bacharel}
+        \fi
+    \fi
+    \renewcommand{\imprimirnivelestudo}{#1}
+    \renewcommand{\imprimircursocompleto}{\MakeTextUppercase{Curso de\ #1\ em\ \imprimirprogramaoudepartamento}}
+    \renewcommand{\imprimirtitulopretendido}{\titulonivelestudo\ em\ \imprimirprogramaoudepartamento}
+    \renewcommand{\imprimirpreambulo}{\imprimirtipodocumentonivelestudo\space apresentada ao \imprimirprogramaoudepartamentocompleto\space do \imprimirinstituicao, como requisito parcial para a obtenção do título de \imprimirtitulopretendido.}
+}
 
-% Comandos de dados - datadefesa
+% Autor
+\providecommand{\imprimirautor}{}
+\providecommand{\imprimirnomeautor}{}
+\providecommand{\imprimirsobrenomeautor}{}
+\renewcommand{\autor}[2]{
+    \renewcommand{\imprimirautor}{#1 #2}
+    \renewcommand{\imprimirnomeautor}{#1}
+    \renewcommand{\imprimirsobrenomeautor}{#2}
+}
+
+% Orientador
+\providecommand{\imprimirorientador}{}
+\providecommand{\imprimirnomeorientador}{}
+\providecommand{\imprimirsobrenomeorientador}{}
+\providecommand{\imprimirtituloorientador}{}
+\renewcommand{\imprimirorientadorRotulo}{Orientador:}
+\renewcommand{\orientador}[3]{
+    \renewcommand{\imprimirorientador}{#1 #2}
+    \renewcommand{\imprimirnomeorientador}{#1}
+    \renewcommand{\imprimirsobrenomeorientador}{#2}
+    \renewcommand{\imprimirtituloorientador}{#3}
+}
+
+% Coorientador
+\providecommand{\imprimircoorientador}{}
+\providecommand{\imprimirnomecoorientador}{}
+\providecommand{\imprimirsobrenomecoorientador}{}
+\providecommand{\imprimirtitulocoorientador}{}
+\renewcommand{\imprimircoorientadorRotulo}{Coorientador:}
+\renewcommand{\coorientador}[3]{
+    \renewcommand{\imprimircoorientador}{#1 #2}
+    \renewcommand{\imprimirnomecoorientador}{#1}
+    \renewcommand{\imprimirsobrenomecoorientador}{#2}
+    \renewcommand{\imprimirtitulocoorientador}{#3}
+}
+
+% Palavras chave
+\providecommand{\imprimirpalavraschave}{}
+\providecommand{\imprimirpalavraschavefichacatalografica}{}
+\newcommand{\palavraschave}[1]{
+\readlist*\mylistpalavraschave{#1}
+\renewcommand{\imprimirpalavraschave}{\foreachitem\x\in\mylistpalavraschave[]{\textit{\x}.\ifx\xcnt\mylistpalavraschavelen\else \ \fi}}
+\renewcommand{\imprimirpalavraschavefichacatalografica}{\foreachitem\x\in\mylistpalavraschave[]{\xcnt . \x . }}
+}
+
+% Keywords
+\providecommand{\imprimirkeywords}{}
+\newcommand{\keywords}[1]{
+\readlist*\mylistkeywords{#1}
+\renewcommand{\imprimirkeywords}{\foreachitem\x\in\mylistkeywords[]{\x.\ifx\xcnt\mylistkeywordslen\else \ \fi}}
+}
+
+% Data Defesa
 \providecommand{\imprimirdatadefesa}{}
 \newcommand{\datadefesa}[1]{\renewcommand{\imprimirdatadefesa}{#1}}
 
-% Autor
-\providecommand{\imprimirnomeautor}{}
-\newcommand{\nomeautor}[1]{\renewcommand{\imprimirnomeautor}{#1}}
-
-\providecommand{\imprimirsobrenomeautor}{}
-\newcommand{\sobrenomeautor}[1]{\renewcommand{\imprimirsobrenomeautor}{#1}}
-
-% Orientador
-\providecommand{\imprimirnomeorientador}{}
-\newcommand{\nomeorientador}[1]{\renewcommand{\imprimirnomeorientador}{#1}}
-
-\providecommand{\imprimirsobrenomeorientador}{}
-\newcommand{\sobrenomeorientador}[1]{\renewcommand{\imprimirsobrenomeorientador}{#1}}
-
-\providecommand{\imprimirtituloorientador}{}
-\newcommand{\tituloorientador}[1]{\renewcommand{\imprimirtituloorientador}{#1}}
-
-% Segundo Orientador
-\providecommand{\imprimirnomesegorientador}{}
-\newcommand{\nomesegorientador}[1]{\renewcommand{\imprimirnomesegorientador}{#1}}
-
-\providecommand{\imprimirsobrenomesegorientador}{}
-\newcommand{\sobrenomesegorientador}[1]{\renewcommand{\imprimirsobrenomesegorientador}{#1}}
-
-\providecommand{\imprimirtitulosegorientador}{}
-\newcommand{\titulosegorientador}[1]{\renewcommand{\imprimirtitulosegorientador}{#1}}
-
-% Coorientador
-\providecommand{\imprimirnomecoorientador}{}
-\newcommand{\nomecoorientador}[1]{\renewcommand{\imprimirnomecoorientador}{#1}}
-
-\providecommand{\imprimirsobrenomecoorientador}{}
-\newcommand{\sobrenomecoorientador}[1]{\renewcommand{\imprimirsobrenomecoorientador}{#1}}
-
-\providecommand{\imprimirtitulocoorientador}{}
-\newcommand{\titulocoorientador}[1]{\renewcommand{\imprimirtitulocoorientador}{#1}}
+% Banca de examinadores
+\providecommand{\bancadeexaminadores}[1]{\readlist*\mylistexaminadores{#1}}
 
 % ---
 % CAPA
@@ -118,9 +157,9 @@
             \SingleSpacing
             \imprimirpreambulo \par
             \medskip
-            {\imprimirorientadorRotulo~\imprimirorientador\par}
+            {\imprimirorientadorRotulo~\imprimirorientador\ - \imprimirtituloorientador\par}
             \abntex@ifnotempty{\imprimircoorientador}{%
-              {\imprimircoorientadorRotulo~\imprimircoorientador}%
+              {\imprimircoorientadorRotulo~\imprimircoorientador\ - \imprimirtitulocoorientador}%
             }%
         \end{minipage}%
     }%
@@ -128,6 +167,99 @@
     {\large\imprimirlocal}\par
     {\large\imprimirdata}
 \end{center}
+}
+
+% ---
+% FICHA CATALOGRAFICA
+% ---
+
+\providecommand{\imprimirfichacatalografica}{
+    \begin{fichacatalografica}
+    \sffamily
+    \begin{normalsize}
+         \noindent{\copyright\imprimirdata}\\
+        INSTITUTO MILITAR DE ENGENHARIA\\
+        Praça General Tibúrcio, 80 – Praia Vermelha\\
+        Rio de Janeiro – RJ CEP: 22290-270\\
+        \par\noindent
+        Este exemplar é de propriedade do Instituto Militar de Engenharia, que poderá incluí-lo em base de dados, armazenar em computador, microfilmar ou adotar qualquer forma de arquivamento.
+        \par\noindent
+        É permitida a menção, reprodução parcial ou integral e a transmissão entre bibliotecas deste trabalho, sem modificação de seu texto, em qualquer meio que esteja ou venha a ser fixado, para pesquisa acadêmica, comentários e citações, desde que sem finalidade comercial e que seja feita a referência bibliográfica completa.
+        \par\noindent
+        Os conceitos expressos neste trabalho são de responsabilidade do(s) autor(es) e do(s) orientador(es).
+    \end{normalsize}
+    
+    \vspace*{\fill}
+    
+    \begin{center}
+        \fbox{\begin{minipage}[c][10cm]{13.5cm}
+                \small
+                
+                \hspace{0.5cm}\parbox[t]{\textwidth-1cm}{
+                    \imprimirsobrenomeautor, \imprimirnomeautor \par
+                    \hspace{0.5cm}\imprimirtitulo\space / \imprimirautor. --
+                    \imprimirlocal, \imprimirdata. \par
+                    \hspace{0.5cm}\thelastpage\ f.
+                }\par
+                \vspace{0.5cm}
+                \hspace{0.5cm}\parbox[t]{\textwidth-1cm}{
+                    \imprimirorientadorRotulo~\imprimirorientador.\par
+                    % \vspace{0.5cm}
+                    \imprimircoorientadorRotulo~\imprimircoorientador.
+                }\par
+                \vspace{0.5cm}
+                \hspace{0.5cm}\parbox[t]{\textwidth-1cm}{
+                    \imprimirtipodocumentonivelestudo\  (\MakeLowercase{\imprimirnivelestudo})~--~\imprimirinstituicao,\ \imprimirprogramaoudepartamento,\ \imprimirdata.
+                }\par
+                \vspace{0.5cm}
+                \hspace{0.5cm}\parbox[t]{\textwidth-1cm}{
+                    \hspace{0.5cm}
+                    \imprimirpalavraschavefichacatalografica
+                    I. \imprimirsobrenomeorientador, \imprimirnomeorientador, orient.
+                    II. \abntex@ifnotempty{\imprimircoorientador}{%
+                            {\imprimirsobrenomecoorientador, \imprimirnomecoorientador, coorient.  III.}%
+                        }%
+                    Título
+                }
+        \end{minipage}}
+    \end{center}
+\end{fichacatalografica}
+}
+
+% ---
+% FOLHA DE APROVACAO
+% ---
+
+\providecommand{\imprimirfolhadeaprovacao}{
+    \begin{folhadeaprovacao}
+    \begin{center}
+        {\ABNTEXchapterfont\bfseries\large\MakeUppercase\imprimirautor\par}
+        \vspace*{\fill}
+        {\ABNTEXchapterfont\bfseries\Large\imprimirtitulo\par}
+        \vspace*{\fill}
+        \begin{minipage}{\textwidth}
+            \imprimirpreambulo \par
+            \smallskip
+            {\imprimirorientadorRotulo~\imprimirorientador\par}
+            {\imprimircoorientadorRotulo~\imprimircoorientador}%
+        \end{minipage}%
+        \vspace*{\fill}
+    \end{center}
+    \begin{flushleft}
+        Aprovado em \imprimirlocal, \imprimirdatadefesa, pela seguinte banca examinadora:
+    \end{flushleft}
+    
+    \setlength{\ABNTEXsignwidth}{.9\textwidth}
+    \foreachitem\x\in\mylistexaminadores[]{\assinatura{\x}}
+    
+    \begin{center}
+        \vspace*{0.5cm}
+        {\large\imprimirlocal}
+        \par
+        {\large\imprimirdata}
+    \end{center}
+    
+\end{folhadeaprovacao}
 }
 
 \makeatother
