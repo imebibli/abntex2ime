@@ -125,18 +125,19 @@
 % ---
 \renewcommand{\imprimircapa}{%
   \begin{capa}%
-    \begin{large}
+\setlrmarginsandblock{25mm}{25mm}{*}
+\setulmarginsandblock{25mm}{25mm}{*} % Espaço interno da página 50mm [nao consegui mudar]
+\checkandfixthelayout
     \begin{center}
-        {\ABNTEXchapterfont\bfseries MINISTÉRIO DA DEFESA\\EXÉRCITO BRASILEIRO\\DEPARTAMENTO DE CIÊNCIA E TECNOLOGIA\\INSTITUTO MILITAR DE ENGENHARIA\\ \imprimircursocompleto \par}
-    \vspace*{35mm}
-    \ABNTEXchapterfont\bfseries\MakeUppercase\imprimirautor\\
-    \vspace*{35mm}
-    \ABNTEXchapterfont\bfseries\MakeUppercase\imprimirtitulo
+        {\ABNTEXchapterfont\fontsize{16}{19}\selectfont\bfseries MINISTÉRIO DA DEFESA\\EXÉRCITO BRASILEIRO\\DEPARTAMENTO DE CIÊNCIA E TECNOLOGIA\\INSTITUTO MILITAR DE ENGENHARIA\\ \imprimircursocompleto \par}
+    \vspace*{43mm} % 43mm -> 50mm 
+    \ABNTEXchapterfont\Large\bfseries\MakeUppercase\imprimirautor\\
+    \vspace*{43mm} % 43mm -> 48mm 
+    \ABNTEXchapterfont\Large\bfseries\MakeUppercase\imprimirtitulo
     \vfill
     \large\imprimirlocal \\
     \large\imprimirdata
     \end{center}
-    \end{large}
   \end{capa}
 }
 
