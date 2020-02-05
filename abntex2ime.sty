@@ -102,7 +102,7 @@
 \providecommand{\imprimirpalavraschavefichacatalografica}{}
 \newcommand{\palavraschave}[1]{
 \readlist*\mylistpalavraschave{#1}
-\renewcommand{\imprimirpalavraschave}{\foreachitem\x\in\mylistpalavraschave[]{\textit{\x}.\ifx\xcnt\mylistpalavraschavelen\else \ \fi}}
+\renewcommand{\imprimirpalavraschave}{\foreachitem\x\in\mylistpalavraschave[]{\x.\ifx\xcnt\mylistpalavraschavelen\else \ \fi}}
 \renewcommand{\imprimirpalavraschavefichacatalografica}{\foreachitem\x\in\mylistpalavraschave[]{\xcnt . \x . }}
 }
 
