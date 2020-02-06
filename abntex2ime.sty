@@ -22,11 +22,29 @@
 
 \ProvidesPackage{abntex2ime}[2019/28/05 Criacao desta customizacao do abnTeX2]
 
+\def\versaoDocumento{v10}
+
+% ---
+% Pacotes básicos 
+% ---
+\usepackage{lmodern}		% Usa a fonte Latin Modern			
+\usepackage[T1]{fontenc}	% Selecao de codigos de fonte.
+\usepackage[utf8]{inputenc}	% Codificacao do documento 
+\usepackage{indentfirst}	% Indenta o primeiro parágrafo de cada seção.
+\usepackage{color}			% Controle das cores
+\usepackage{graphicx}		% Inclusão de gráficos
+\usepackage{microtype} 		% para melhorias de justificação
+\usepackage{setspace} % para espacamento simples no resumo
+% ---
+
+% ---
+% Pacotes Adicionais para funcionamento do abntex2ime 
+% ---
+\usepackage{listofitems} % Pacote listofitems permite a extração de múltiplos parâmetros de um array
+\usepackage[pass]{geometry} % O pacote geometry com parâmetro pass mantém as margens da abntex/memoir, mas permite mudar as margens da capa.
+% ---
+
 \renewcommand{\ABNTEXchapterfontsize}{\Large}
-
-\usepackage{listofitems}
-
-\def\versaoDocumento{v9}
 
 
 \providecommand{\imprimirprogramaoudepartamento}{}
@@ -124,21 +142,24 @@
 % CAPA
 % ---
 \renewcommand{\imprimircapa}{%
-  \begin{capa}%
-\setlrmarginsandblock{25mm}{25mm}{*}
-\setulmarginsandblock{25mm}{25mm}{*} % Espaço interno da página 50mm [nao consegui mudar]
-\checkandfixthelayout
-    \begin{center}
-        {\ABNTEXchapterfont\fontsize{16}{19}\selectfont\bfseries MINISTÉRIO DA DEFESA\\EXÉRCITO BRASILEIRO\\DEPARTAMENTO DE CIÊNCIA E TECNOLOGIA\\INSTITUTO MILITAR DE ENGENHARIA\\ \imprimircursocompleto \par}
-    \vspace*{43mm} % 43mm -> 50mm 
-    \ABNTEXchapterfont\Large\bfseries\MakeUppercase\imprimirautor\\
-    \vspace*{43mm} % 43mm -> 48mm 
-    \ABNTEXchapterfont\Large\bfseries\MakeUppercase\imprimirtitulo
-    \vfill
-    \imprimirlocal \\
-    \imprimirdata
-    \end{center}
-  \end{capa}
+\begin{capa}%
+  \savegeometry{Mem}
+  \newgeometry{top=2cm,bottom=28mm,left=13mm,right=13mm}
+
+  \begin{center}\begin{large}
+    {\ABNTEXchapterfont\bfseries MINISTÉRIO DA DEFESA\\EXÉRCITO BRASILEIRO\\DEPARTAMENTO DE CIÊNCIA E TECNOLOGIA\\INSTITUTO MILITAR DE ENGENHARIA\\ \imprimircursocompleto \par}
+  \vspace*{50mm} 
+  \ABNTEXchapterfont\bfseries\MakeUppercase\imprimirautor\\
+  \vspace*{48mm}
+  \ABNTEXchapterfont\bfseries\MakeUppercase\imprimirtitulo
+  \vfill
+  \imprimirlocal \\
+  \imprimirdata
+  \end{large}\end{center}
+  
+  \clearpage
+  \loadgeometry{Mem}
+\end{capa}
 }
 
 % ---

@@ -1,7 +1,7 @@
 \documentclass[
 	% -- opções da classe memoir --
 	12pt,				% tamanho da fonte
-	openright,			% capítulos começam em pág ímpar (insere página vazia caso preciso)
+	openright,			% capítulos começam em pág ímpar (página vazia se preciso)
 % 	twoside,			% para impressão em recto e verso.
     oneside,
 	a4paper,			% tamanho do papel. 
@@ -16,20 +16,6 @@
 % 	spanish,			% idioma adicional para hifenização
 	brazil				% o último idioma é o principal do documento
 	]{./abntex2}
-
-% ---
-% Pacotes básicos 
-% ---
-\usepackage{lmodern}		% Usa a fonte Latin Modern			
-\usepackage[T1]{fontenc}	% Selecao de codigos de fonte.
-\usepackage[utf8]{inputenc}	% Codificacao do documento 
-\usepackage{indentfirst}	% Indenta o primeiro parágrafo de cada seção.
-\usepackage{color}			% Controle das cores
-\usepackage{graphicx}		% Inclusão de gráficos
-\usepackage{microtype} 		% para melhorias de justificação
-\usepackage{setspace} % para espacamento simples no resumo
-\usepackage{fontawesome} % para simbolos diferentes
-% ---
 		
 % ---
 % Pacotes adicionais, usados apenas no exemplo
@@ -70,12 +56,9 @@
 % ---
 \usepackage{abntex2ime}
 % ---
-% Informações de dados para CAPA e FOLHA DE ROSTO
-% ---
-\usepackage{abntex2ime}
-% ---
+
 \instituicao{Instituto Militar de Engenharia}
-\programapgdepartamento{Engenharia de Defesa} % departamento: apenas para a PG, comentar para PFC
+\programapgdepartamento{Engenharia de Transportes} % departamento: apenas para a PG, comentar para PFC
 \nivelestudo{Doutorado} % Graduação, Mestrado ou Doutorado
 % ---
 \titulo{Modelo Canônico de Trabalho Acadêmico com \abnTeX\space \versaoDocumento}
@@ -84,8 +67,7 @@
 % ---
 \autor{Fulano de}{Tal} %{nome}{sobrenome}
 \orientador{Ciclano}{Silva}{Ph.D.}
-\coorientador{Beltrano}{Silva}{D.Sc.}
-% \coorientador{Jauvane Cavalcante de}{Oliveira}{Ph.D.} % se não tiver, \coorientador{}{}{}
+\coorientador{Beltrano}{Silva}{D.Sc.} % se não tiver, use \coorientador{}{}{}
 % ---
 \local{Rio de Janeiro}
 \data{2020}
