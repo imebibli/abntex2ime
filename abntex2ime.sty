@@ -22,7 +22,7 @@
 
 \ProvidesPackage{abntex2ime}[2019/28/05 Criacao desta customizacao do abnTeX2]
 
-\def\versaoDocumento{v11}
+\def\versaoDocumento{v12}
 
 % ---
 % Pacotes básicos 
@@ -44,8 +44,17 @@
 \usepackage[pass]{geometry} % O pacote geometry com parâmetro pass mantém as margens da abntex/memoir, mas permite mudar as margens da capa.
 % ---
 
+% ---
+% Reajuste de comandos do ABNTEx2 
+% ---
 \renewcommand{\ABNTEXchapterfontsize}{\Large}
-
+\pdfstringdefDisableCommands{\let\uppercase\relax}
+% Imprime uma pagina de divisao no estilo parte
+\renewcommand{\partpage}{%
+  \cleardoublepage
+  \phantomsection
+}
+% ---
 
 \providecommand{\imprimirprogramaoudepartamento}{}
 \providecommand{\imprimirprogramaoudepartamentocompleto}{}
