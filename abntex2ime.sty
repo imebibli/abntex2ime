@@ -195,6 +195,8 @@
 
 \providecommand{\imprimirfichacatalografica}{
     \begin{fichacatalografica}
+    \savegeometry{Mem}
+    \newgeometry{top=3cm,bottom=2cm,left=2cm,right=3cm}
     \sffamily
     \begin{normalsize}
          \noindent{\copyright\imprimirdata}\\
@@ -243,6 +245,8 @@
                 }
         \end{minipage}}
     \end{center}
+    \clearpage
+    \loadgeometry{Mem}
 \end{fichacatalografica}
 }
 
