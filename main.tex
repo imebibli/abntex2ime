@@ -17,6 +17,29 @@
 	brazil				% o último idioma é o principal do documento
 	]{./abntex2}
 
+% ----------------------------------------------------------------
+% CONFIGURACAO DO SUMARIO
+% ----------------------------------------------------------------
+\renewcommand{\cftsectionfont}{}
+%%% re-styling the TOC with etoc:
+\usepackage{etoc}
+\makeatletter
+\let\old@chapter\l@chapter
+\let\old@chapternumberline\chapternumberline
+\etocsetstyle{chapter}{}{}
+     {\old@chapter{\old@chapternumberline{\etocnumber}%
+          \etoclink{\MakeUppercase\etocthename}}{\etocpage}}{}%
+\let\old@section\l@section
+\etocsetstyle{section}{}{}
+     {\old@section{\numberline{\etocnumber}\etoclink{\MakeUppercase\etocthename}}{\etocpage}}{}%
+\let\old@subsection\l@subsection
+\etocsetstyle{subsection}{}{}
+     {\old@subsection{\numberline{\etocnumber}\etoclink{\MakeUppercase\etocthename}}{\etocpage}}{}%
+\let\old@subsubsection\l@subsubsection
+\etocsetstyle{subsubsection}{}{}
+     {\old@subsubsection{\numberline{\etocnumber}\etoclink{\MakeUppercase\etocthename}}{\etocpage}}{}%
+\makeatother
+
 % ---
 % Pacotes básicos 
 % ---
@@ -28,6 +51,7 @@
 \usepackage{graphicx}		% Inclusão de gráficos
 \usepackage{microtype} 		% para melhorias de justificação
 \usepackage{setspace}       % para espacamento simples no resumo
+\usepackage{pdfpages}
 % ---
 		
 % ---

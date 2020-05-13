@@ -22,13 +22,14 @@
 
 \ProvidesPackage{abntex2ime}[2019/28/05 Criacao desta customizacao do abnTeX2]
 
-\def\versaoDocumento{v13}
+\def\versaoDocumento{v14}
 
 % ---
 % Pacotes Adicionais para funcionamento do abntex2ime 
 % ---
 \usepackage{listofitems} % Pacote listofitems permite a extração de múltiplos parâmetros de um array
 \usepackage[pass]{geometry} % O pacote geometry com parâmetro pass mantém as margens da abntex/memoir, mas permite mudar as margens da capa.
+
 % ---
 
 % ---
@@ -141,7 +142,7 @@
 \begin{capa}%
   \savegeometry{Mem}
   \newgeometry{top=2cm,bottom=28mm,left=13mm,right=13mm}
-
+\SingleSpacing
   \begin{center}\begin{large}
     {\ABNTEXchapterfont\bfseries MINISTÉRIO DA DEFESA\\EXÉRCITO BRASILEIRO\\DEPARTAMENTO DE CIÊNCIA E TECNOLOGIA\\INSTITUTO MILITAR DE ENGENHARIA\\ \imprimircursocompleto \par}
   \vspace*{50mm} 
