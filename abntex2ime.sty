@@ -49,13 +49,27 @@
 \newcommand{\programapgdepartamento}[1]{
 % programapgdepartamento: Programa de PG ou Departamento da Graduação
     \renewcommand{\imprimirprogramaoudepartamento}{#1}
-    \renewcommand{\imprimirprogramaoudepartamentocompleto}{Programa de Pós-graduação em\ #1}
+    \renewcommand{\imprimirprogramaoudepartamentocompleto}{
+        \edef\first{\myNivelEstudo}\edef\second{Graduação}\ifx\first\second
+            Curso de Graduação em\ #1
+        \else
+            Programa de Pós-graduação em\ #1
+        \fi
+    }
+    \newcommand{\imprimirProgramaOuDepartamentoCompletoUpercase}{
+        \edef\first{\myNivelEstudo}\edef\second{Graduação}\ifx\first\second
+            \MakeUppercase{Curso de Graduação em\ #1}
+        \else
+            \MakeUppercase{Programa de Pós-graduação em\ #1}
+        \fi
+    }
 }
 
 \providecommand{\imprimirnivelestudo}{}
-\providecommand{\imprimircursocompleto}{}
 \providecommand{\imprimirtitulopretendido}{}
-\newcommand{\nivelestudo}[1]{ 
+\providecommand{\tituloGraduacao}[1]{\def\imprimirTituloGraduacao{#1}}
+\newcommand{\nivelestudo}[1]{
+    \def\myNivelEstudo{#1}
     % Graduação, Mestrado ou Doutorado
     \edef\first{#1}\edef\second{Doutorado}\ifx\first\second
         \def\titulonivelestudo{Doutor em Ciência}
@@ -67,13 +81,17 @@
             \newcommand{\imprimirtipodocumentonivelestudo}{Dissertação}
             \def\tipodocumentocompleto{Dissertação de #1}
         \else
-            \def\titulonivelestudo{Bacharel}
+            \edef\second{Graduação}\ifx\first\second
+                \def\titulonivelestudo{Engenheiro}
+                \newcommand{\imprimirtipodocumentonivelestudo}{Monografia}
+            \else
+                \PackageError{abntex2ime}{Você precisa configurar o nível de extudo (Graduação, Mestrado ou Doutorado).}{Use o comando \nivelestudo\{\}}
+            \fi
         \fi
     \fi
     \renewcommand{\imprimirnivelestudo}{#1}
-    \renewcommand{\imprimircursocompleto}{\MakeTextUppercase{PROGRAMA DE PÓS-GRADUAÇÃO em\ \imprimirprogramaoudepartamento}}
     \renewcommand{\imprimirtitulopretendido}{\titulonivelestudo\ em\ \imprimirprogramaoudepartamento}
-    \renewcommand{\imprimirpreambulo}{\imprimirtipodocumentonivelestudo\space apresentada ao \imprimirprogramaoudepartamentocompleto\space do \imprimirinstituicao, como requisito parcial para a obtenção do título de \imprimirtitulopretendido.}
+    \renewcommand{\imprimirpreambulo}{\imprimirtipodocumentonivelestudo\ apresentada ao\ \imprimirprogramaoudepartamentocompleto\ do \imprimirinstituicao, como requisito parcial para a obtenção do título de \ifdefined\imprimirTituloGraduacao \imprimirTituloGraduacao \else \imprimirtitulopretendido \fi.}
 }
 
 % Autor
@@ -144,7 +162,7 @@
   \newgeometry{top=2cm,bottom=28mm,left=13mm,right=13mm}
 \SingleSpacing
   \begin{center}\begin{large}
-    {\ABNTEXchapterfont\bfseries MINISTÉRIO DA DEFESA\\EXÉRCITO BRASILEIRO\\DEPARTAMENTO DE CIÊNCIA E TECNOLOGIA\\INSTITUTO MILITAR DE ENGENHARIA\\ \imprimircursocompleto \par}
+    {\ABNTEXchapterfont\bfseries MINISTÉRIO DA DEFESA\\EXÉRCITO BRASILEIRO\\DEPARTAMENTO DE CIÊNCIA E TECNOLOGIA\\INSTITUTO MILITAR DE ENGENHARIA\\ \imprimirProgramaOuDepartamentoCompletoUpercase \par}
   \vspace*{50mm} 
   \ABNTEXchapterfont\bfseries\MakeUppercase\imprimirautor\\
   \vspace*{48mm}
@@ -287,6 +305,29 @@
 \end{folhadeaprovacao}
 }
 
+\makeatother
+
+% ----------------------------------------------------------------
+% CONFIGURACAO DO SUMARIO
+% ----------------------------------------------------------------
+\renewcommand{\cftsectionfont}{}
+%%% re-styling the TOC with etoc:
+\usepackage{etoc}
+\makeatletter
+\let\old@chapter\l@chapter
+\let\old@chapternumberline\chapternumberline
+\etocsetstyle{chapter}{}{}
+     {\old@chapter{\old@chapternumberline{\etocnumber}%
+          \etoclink{\MakeUppercase\etocthename}}{\etocpage}}{}%
+\let\old@section\l@section
+\etocsetstyle{section}{}{}
+     {\old@section{\numberline{\etocnumber}\etoclink{\MakeUppercase\etocthename}}{\etocpage}}{}%
+\let\old@subsection\l@subsection
+\etocsetstyle{subsection}{}{}
+     {\old@subsection{\numberline{\etocnumber}\etoclink{\MakeUppercase\etocthename}}{\etocpage}}{}%
+\let\old@subsubsection\l@subsubsection
+\etocsetstyle{subsubsection}{}{}
+     {\old@subsubsection{\numberline{\etocnumber}\etoclink{\MakeUppercase\etocthename}}{\etocpage}}{}%
 \makeatother
 
 % ---

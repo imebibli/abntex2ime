@@ -17,6 +17,29 @@
 	brazil				% o último idioma é o principal do documento
 	]{./abntex2}
 
+% ----------------------------------------------------------------
+% CONFIGURACAO DO SUMARIO
+% ----------------------------------------------------------------
+\renewcommand{\cftsectionfont}{}
+%%% re-styling the TOC with etoc:
+\usepackage{etoc}
+\makeatletter
+\let\old@chapter\l@chapter
+\let\old@chapternumberline\chapternumberline
+\etocsetstyle{chapter}{}{}
+     {\old@chapter{\old@chapternumberline{\etocnumber}%
+          \etoclink{\MakeUppercase\etocthename}}{\etocpage}}{}%
+\let\old@section\l@section
+\etocsetstyle{section}{}{}
+     {\old@section{\numberline{\etocnumber}\etoclink{\MakeUppercase\etocthename}}{\etocpage}}{}%
+\let\old@subsection\l@subsection
+\etocsetstyle{subsection}{}{}
+     {\old@subsection{\numberline{\etocnumber}\etoclink{\MakeUppercase\etocthename}}{\etocpage}}{}%
+\let\old@subsubsection\l@subsubsection
+\etocsetstyle{subsubsection}{}{}
+     {\old@subsubsection{\numberline{\etocnumber}\etoclink{\MakeUppercase\etocthename}}{\etocpage}}{}%
+\makeatother
+
 % ---
 % Pacotes básicos 
 % ---
@@ -73,8 +96,9 @@
 % ---
 
 \instituicao{Instituto Militar de Engenharia}
-\programapgdepartamento{Engenharia de Transportes}
-\nivelestudo{Doutorado} % Graduação, Mestrado ou Doutorado
+\programapgdepartamento{Engenharia de Fortificação E Construção}
+\nivelestudo{Graduação} % Graduação, Mestrado ou Doutorado
+\tituloGraduacao{Engenheiro de Fortificação E Construção}
 % ---
 \titulo{Modelo Canônico de Trabalho Acadêmico com \abnTeX\space \versaoDocumento}
 \palavraschave{arp,sarp,iot,vant,tarefas cooperativas,agentes inteligentes}
