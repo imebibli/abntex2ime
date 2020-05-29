@@ -66,7 +66,6 @@
 
 \providecommand{\imprimirnivelestudo}{}
 \providecommand{\imprimirtitulopretendido}{}
-\providecommand{\tituloGraduacao}[1]{\def\imprimirTituloGraduacao{#1}}
 \newcommand{\nivelestudo}[1]{
     \def\myNivelEstudo{#1}
     % Graduação, Mestrado ou Doutorado
@@ -108,20 +107,6 @@
     \renewcommand{\imprimirnomeautor}{#1}
     \renewcommand{\imprimirsobrenomeautor}{#2}
 }
-\newcommand{\imprimirAutores}[3]{
-    \def\first{#3}\def\second{uppercase}
-    \ifx\first\second
-        \foreachitem \nome \in \listNomeAutores{
-            \MakeUppercase{\nome\ \listSobrenomeAutores[\nomecnt]}
-            \ifx\nomecnt\listNomeAutoreslen #2 \else #1 \fi
-        }
-    \else
-        \foreachitem \nome \in \listNomeAutores{
-            \nome\ \listSobrenomeAutores[\nomecnt]
-            \ifx\nomecnt\listNomeAutoreslen #2 \else #1 \fi
-        }
-    \fi
-}
 \providecommand{\autores}[2]{
     \readlist*\listNomeAutores{#1}
     \readlist*\listSobrenomeAutores{#2}
@@ -132,8 +117,8 @@
 \providecommand{\imprimirnomeorientador}{}
 \providecommand{\imprimirsobrenomeorientador}{}
 \providecommand{\imprimirtituloorientador}{}
-\renewcommand{\imprimirorientadorRotulo}{Orientador:}
 \renewcommand{\orientador}[3]{
+    \orientadores{#1}{#2}{#3}
     \renewcommand{\imprimirorientador}{#1 #2}
     \renewcommand{\imprimirnomeorientador}{#1}
     \renewcommand{\imprimirsobrenomeorientador}{#2}
@@ -143,19 +128,6 @@
     \readlist*\listNomeOrientadores{#1}
     \readlist*\listSobrenomeOrientadores{#2}
     \readlist*\listTituloOrientadores{#3}
-}
-
-% Coorientador
-\providecommand{\imprimircoorientador}{}
-\providecommand{\imprimirnomecoorientador}{}
-\providecommand{\imprimirsobrenomecoorientador}{}
-\providecommand{\imprimirtitulocoorientador}{}
-\renewcommand{\imprimircoorientadorRotulo}{Coorientador:}
-\renewcommand{\coorientador}[3]{
-    \renewcommand{\imprimircoorientador}{#1 #2}
-    \renewcommand{\imprimirnomecoorientador}{#1}
-    \renewcommand{\imprimirsobrenomecoorientador}{#2}
-    \renewcommand{\imprimirtitulocoorientador}{#3}
 }
 
 % Palavras chave
@@ -197,7 +169,7 @@
                             INSTITUTO MILITAR DE ENGENHARIA\\
                     \imprimirProgramaOuDepartamentoCompletoUpercase \par}
     \vspace*{50mm} 
-    {\ABNTEXchapterfont\bfseries\imprimirAutores{\\\noindent}{}{uppercase} \par}
+    {\ABNTEXchapterfont\bfseries\foreachitem\nome\in\listNomeAutores{\MakeUppercase{\nome\ \listSobrenomeAutores[\nomecnt]}\\}\par}
     \vspace*{48mm}
     {\noindent\ABNTEXchapterfont\bfseries\MakeUppercase\imprimirtitulo}
     \vfill
@@ -217,7 +189,7 @@
 
 \renewcommand{\folhaderostocontent}{
 \begin{center}
-    {\ABNTEXchapterfont\bfseries\large\imprimirAutores{\\\noindent}{}{uppercase}\par}
+    {\SingleSpacing\ABNTEXchapterfont\bfseries\large\foreachitem\nome\in\listNomeAutores{\MakeUppercase{\nome\ \listSobrenomeAutores[\nomecnt]}\\}\par}
     \vspace*{\fill}
     {\noindent\ABNTEXchapterfont\bfseries\large\MakeUppercase\imprimirtitulo\par}
     \vspace*{\fill}
@@ -268,7 +240,6 @@
     \begin{center}
         \fbox{\begin{minipage}[c][10cm]{13.5cm}
             \small
-            
             \hspace{0.5cm}\parbox[t]{\textwidth-1cm}{
                 \foreachitem \nome \in \listNomeAutores{
                     \listSobrenomeAutores[\nomecnt], \nome\ifthenelse{\nomecnt<\listNomeAutoreslen}{;}{.}
@@ -309,7 +280,7 @@
 \providecommand{\imprimirfolhadeaprovacao}{
     \begin{folhadeaprovacao}
     \begin{center}
-        {\ABNTEXchapterfont\bfseries\large\imprimirAutores{\\\noindent}{}{uppercase}\par}
+        {\SingleSpacing\ABNTEXchapterfont\bfseries\large\foreachitem\nome\in\listNomeAutores{\MakeUppercase{\nome\ \listSobrenomeAutores[\nomecnt]}\\}\par}
         \vspace*{\fill}
         {\ABNTEXchapterfont\bfseries\Large\imprimirtitulo\par}
         \vspace*{\fill}
