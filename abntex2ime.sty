@@ -173,8 +173,8 @@
     \vspace*{48mm}
     {\noindent\ABNTEXchapterfont\bfseries\MakeUppercase\imprimirtitulo}
     \vfill
-    \MakeUppercase\imprimirlocal \\
-    \MakeUppercase\imprimirdata
+    {\bfseries\MakeUppercase\imprimirlocal \\
+    \MakeUppercase\imprimirdata}
   \end{large}\end{center}
   
   \clearpage
@@ -189,9 +189,9 @@
 
 \renewcommand{\folhaderostocontent}{
 \begin{center}
-    {\SingleSpacing\ABNTEXchapterfont\bfseries\large\foreachitem\nome\in\listNomeAutores{\MakeUppercase{\nome\ \listSobrenomeAutores[\nomecnt]}\\}\par}
+    {\SingleSpacing\ABNTEXchapterfont\large\foreachitem\nome\in\listNomeAutores{\MakeUppercase{\nome\ \listSobrenomeAutores[\nomecnt]}\\}\par}
     \vspace*{\fill}
-    {\noindent\ABNTEXchapterfont\bfseries\large\MakeUppercase\imprimirtitulo\par}
+    {\noindent\ABNTEXchapterfont\large\MakeUppercase\imprimirtitulo\par}
     \vspace*{\fill}
     \abntex@ifnotempty{\imprimirpreambulo}{%
         \hspace{.3\textwidth}

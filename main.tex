@@ -17,29 +17,6 @@
 	brazil				% o último idioma é o principal do documento
 	]{./abntex2}
 
-% ----------------------------------------------------------------
-% CONFIGURACAO DO SUMARIO
-% ----------------------------------------------------------------
-\renewcommand{\cftsectionfont}{}
-%%% re-styling the TOC with etoc:
-\usepackage{etoc}
-\makeatletter
-\let\old@chapter\l@chapter
-\let\old@chapternumberline\chapternumberline
-\etocsetstyle{chapter}{}{}
-     {\old@chapter{\old@chapternumberline{\etocnumber}%
-          \etoclink{\MakeUppercase\etocthename}}{\etocpage}}{}%
-\let\old@section\l@section
-\etocsetstyle{section}{}{}
-     {\old@section{\numberline{\etocnumber}\etoclink{\MakeUppercase\etocthename}}{\etocpage}}{}%
-\let\old@subsection\l@subsection
-\etocsetstyle{subsection}{}{}
-     {\old@subsection{\numberline{\etocnumber}\etoclink{\MakeUppercase\etocthename}}{\etocpage}}{}%
-\let\old@subsubsection\l@subsubsection
-\etocsetstyle{subsubsection}{}{}
-     {\old@subsubsection{\numberline{\etocnumber}\etoclink{\MakeUppercase\etocthename}}{\etocpage}}{}%
-\makeatother
-
 % ---
 % Pacotes básicos 
 % ---
@@ -95,29 +72,7 @@
 \usepackage{abntex2ime}
 % ---
 
-\instituicao{Instituto Militar de Engenharia}
-\programapgdepartamento{Engenharia de Fortificação e Construção}
-\nivelestudo{Graduação} % Graduação, Mestrado ou Doutorado
-% ---
-\titulo{Modelo Canônico de Trabalho Acadêmico com \abnTeX\space \versaoDocumento}
-\palavraschave{arp,sarp,iot,vant,tarefas cooperativas,agentes inteligentes}
-\keywords{unmanned systems,unmanned vehicles,uav,uas,cooperative tasks,intelligent agents}
-% ---
-\autores{Fulano de,Fulano de}{Tal A,Tal B}% {nome}{sobrenome} 1+
-\orientadores{Ciclano,Beltrano}{Silva,Silva}{Ph.D.,D.Sc.}%{nomes}{sobrenomes}{títulos} 1+
-% ---
-\local{Rio de Janeiro}
-\data{2020}
-\datadefesa{30 de fevereiro de 2020}
-\bancadeexaminadores{
-    Prof. \textbf{\imprimirorientador} - \imprimirtituloorientador\ do IME - Presidente,
-    Prof. \textbf{\imprimircoorientador} - \imprimirtitulocoorientador\ do LNCC,
-    Prof. \textbf{Professor 1} - Ph.D do IMPA,
-    Prof. \textbf{Professor 2} - D.Sc do LNCC,
-    Prof. \textbf{Professor 3} - D.Sc do IME,
-    Prof. \textbf{Professor 4} - D.Sc da PUC
-}
-% ---
+\input{dados}
 
 % ---
 % Configurações de aparência do PDF final
@@ -240,84 +195,7 @@
 \imprimirfolhadeaprovacao
 % ---
 
-% ---
-% Dedicatória
-% ---
-\begin{dedicatoria}
-   \vspace*{\fill}
-   \centering
-   \noindent
-   \textit{ Este trabalho é dedicado às crianças adultas que,\\
-   quando pequenas, sonharam em se tornar cientistas.} \vspace*{\fill}
-\end{dedicatoria}
-% ---
-
-% ---
-% Agradecimentos
-% ---
-\begin{agradecimentos}
-Os agradecimentos principais são direcionados à Gerald Weber, Miguel Frasson, Leslie H. Watter, Bruno Parente Lima, Flávio de Vasconcellos Corrêa, Otavio Real Salvador, Renato Machnievscz\footnote{Os nomes dos integrantes do primeiro projeto abn\TeX\ foram extraídos de \url{http://codigolivre.org.br/projects/abntex/}} e todos aqueles que contribuíram para que a produção de trabalhos acadêmicos conforme as normas ABNT com \LaTeX\ fosse possível.
-
-Agradecimentos especiais são direcionados ao Centro de Pesquisa em Arquitetura da Informação\footnote{\url{http://www.cpai.unb.br/}} da Universidade de Brasília (CPAI), ao grupo de usuários \emph{latex-br}\footnote{\url{http://groups.google.com/group/latex-br}} e aos novos voluntários do grupo \emph{\abnTeX}\footnote{\url{http://groups.google.com/group/abntex2} e \url{http://www.abntex.net.br/}}~que contribuíram e que ainda contribuirão para a evolução do \abnTeX.
-
-\end{agradecimentos}
-% ---
-
-% ---
-% Epígrafe
-% ---
-\begin{epigrafe}
-    \vspace*{\fill}
-	\begin{flushright}
-		\textit{``Não vos amoldeis às estruturas deste mundo, \\
-		mas transformai-vos pela renovação da mente, \\
-		a fim de distinguir qual é a vontade de Deus: \\
-		o que é bom, o que Lhe é agradável, o que é perfeito.\\
-		(Bíblia Sagrada, Romanos 12, 2)}
-	\end{flushright}
-\end{epigrafe}
-% ---
-
-% ---
-% RESUMOS
-% ---
-
-% resumo em português
-\setlength{\absparsep}{18pt} % ajusta o espaçamento dos parágrafos do resumo
-\begin{resumo}
-\SingleSpacing
- Segundo a \citeonline[3.1-3.2]{NBR6028:2003}, o resumo deve ressaltar o
- objetivo, o método, os resultados e as conclusões do documento. A ordem e a extensão
- destes itens dependem do tipo de resumo (informativo ou indicativo) e do
- tratamento que cada item recebe no documento original. O resumo deve ser
- precedido da referência do documento, com exceção do resumo inserido no
- próprio documento. (\ldots) As palavras-chave devem figurar logo abaixo do
- resumo, antecedidas da expressão Palavras-chave:, separadas entre si por
- ponto e finalizadas também por ponto.
-
- \textbf{Palavras-chave}: \imprimirpalavraschave
-\end{resumo}
-
-% resumo em inglês
-\begin{resumo}[Abstract]
- \begin{otherlanguage*}{english}
-%  \linespread{1.3}
-\SingleSpacing
- Segundo a \citeonline[3.1-3.2]{NBR6028:2003}, o resumo deve ressaltar o
- objetivo, o método, os resultados e as conclusões do documento. A ordem e a extensão
- destes itens dependem do tipo de resumo (informativo ou indicativo) e do
- tratamento que cada item recebe no documento original. O resumo deve ser
- precedido da referência do documento, com exceção do resumo inserido no
- próprio documento. (\ldots) As palavras-chave devem figurar logo abaixo do
- resumo, antecedidas da expressão Palavras-chave:, separadas entre si por
- ponto e finalizadas também por ponto.
-   This is the english abstract.
-   \vspace{\onelineskip}
- 
-   \noindent 
-   \textbf{Keywords}: \imprimirkeywords
- \end{otherlanguage*}
-\end{resumo}
+\input{pre-texto}
 
 % ---
 % inserir lista de ilustrações
@@ -343,25 +221,7 @@ Agradecimentos especiais são direcionados ao Centro de Pesquisa em Arquitetura 
 \cleardoublepage
 % ---
 
-% ---
-% inserir lista de abreviaturas e siglas
-% ---
-\begin{siglas}
-  \item[ABNT] Associação Brasileira de Normas Técnicas
-  \item[abnTeX] ABsurdas Normas para TeX
-\end{siglas}
-% ---
-
-% ---
-% inserir lista de símbolos
-% ---
-\begin{simbolos}
-  \item[$ \Gamma $] Letra grega Gama
-  \item[$ \Lambda $] Lambda
-  \item[$ \zeta $] Letra grega minúscula zeta
-  \item[$ \in $] Pertence
-\end{simbolos}
-% ---
+\input{simbolo-abrev}
 
 % ---
 % inserir o sumario
