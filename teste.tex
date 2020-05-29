@@ -1,0 +1,39 @@
+\documentclass[11pt]{article}
+\usepackage{array}
+
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}m{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}m{#1}}
+
+\newenvironment{timingtable}
+{\begin{tabular}{R{30pt}|R{30pt}|R{30pt}}}
+{\end{tabular}}
+
+\newcommand{\addrow}[3]{#1 & #2 &  #3 \%}
+
+\setlength{\tabcolsep}{10pt}
+
+ \addrow{462.7,231.4,154.2,115.7}
+
+\begin{document}
+
+% Actual width of each column is 30 + 2*tabcolsep
+\begin{table}[ht]
+\caption{Multi-row table}
+\begin{center}
+\begin{tabular}{|C{20pt}|@{}p{150pt}@{}|}
+    \hline
+    512 &
+    \begin{timingtable}
+    \addrow{462.7}{222.0}{100} \\
+    \addrow{231.4}{111.0}{50} \\
+    \addrow{154.2}{74.0}{33} \\
+    \addrow{115.7}{37.0}{25} \\
+    \end{timingtable} \\
+   \hline
+\end{tabular}
+\end{center}
+\label{tab:multicol}
+\end{table}
+
+\end{document}

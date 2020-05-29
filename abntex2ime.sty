@@ -22,14 +22,13 @@
 
 \ProvidesPackage{abntex2ime}[2019/28/05 Criacao desta customizacao do abnTeX2]
 
-\def\versaoDocumento{v16}
+\def\versaoDocumento{v17}
 
 % ---
 % Pacotes Adicionais para funcionamento do abntex2ime 
 % ---
 \usepackage{listofitems} % Pacote listofitems permite a extração de múltiplos parâmetros de um array
 \usepackage[pass]{geometry} % O pacote geometry com parâmetro pass mantém as margens da abntex/memoir, mas permite mudar as margens da capa.
-
 % ---
 
 % ---
@@ -82,16 +81,21 @@
             \def\tipodocumentocompleto{Dissertação de #1}
         \else
             \edef\second{Graduação}\ifx\first\second
-                \def\titulonivelestudo{Engenheiro}
-                \newcommand{\imprimirtipodocumentonivelestudo}{Monografia}
+                \def\titulonivelestudo{Bacharel}
+                \newcommand{\imprimirtipodocumentonivelestudo}{Projeto de Final de Curso}
             \else
-                \PackageError{abntex2ime}{Você precisa configurar o nível de extudo (Graduação, Mestrado ou Doutorado).}{Use o comando \nivelestudo\{\}}
+                \PackageError{abntex2ime}{Você precisa configurar o nível de estudo (Graduação, Mestrado ou Doutorado).}{Use o comando \nivelestudo\{\}}
             \fi
         \fi
     \fi
     \renewcommand{\imprimirnivelestudo}{#1}
     \renewcommand{\imprimirtitulopretendido}{\titulonivelestudo\ em\ \imprimirprogramaoudepartamento}
-    \renewcommand{\imprimirpreambulo}{\imprimirtipodocumentonivelestudo\ apresentada ao\ \imprimirprogramaoudepartamentocompleto\ do \imprimirinstituicao, como requisito parcial para a obtenção do título de \ifdefined\imprimirTituloGraduacao \imprimirTituloGraduacao \else \imprimirtitulopretendido \fi.}
+    \renewcommand{\imprimirpreambulo}{
+        \imprimirtipodocumentonivelestudo
+        \def\first{Bacharel}
+        \ifx\titulonivelestudo\first apresentado \else apresentada \fi
+       ao\imprimirprogramaoudepartamentocompleto do \imprimirinstituicao, como requisito parcial para a obtenção do título de \imprimirtitulopretendido.
+    }
 }
 
 % Autor
@@ -99,9 +103,28 @@
 \providecommand{\imprimirnomeautor}{}
 \providecommand{\imprimirsobrenomeautor}{}
 \renewcommand{\autor}[2]{
+    \autores{#1}{#2}
     \renewcommand{\imprimirautor}{#1 #2}
     \renewcommand{\imprimirnomeautor}{#1}
     \renewcommand{\imprimirsobrenomeautor}{#2}
+}
+\newcommand{\imprimirAutores}[3]{
+    \def\first{#3}\def\second{uppercase}
+    \ifx\first\second
+        \foreachitem \nome \in \listNomeAutores{
+            \MakeUppercase{\nome\ \listSobrenomeAutores[\nomecnt]}
+            \ifx\nomecnt\listNomeAutoreslen #2 \else #1 \fi
+        }
+    \else
+        \foreachitem \nome \in \listNomeAutores{
+            \nome\ \listSobrenomeAutores[\nomecnt]
+            \ifx\nomecnt\listNomeAutoreslen #2 \else #1 \fi
+        }
+    \fi
+}
+\providecommand{\autores}[2]{
+    \readlist*\listNomeAutores{#1}
+    \readlist*\listSobrenomeAutores{#2}
 }
 
 % Orientador
@@ -115,6 +138,11 @@
     \renewcommand{\imprimirnomeorientador}{#1}
     \renewcommand{\imprimirsobrenomeorientador}{#2}
     \renewcommand{\imprimirtituloorientador}{#3}
+}
+\providecommand{\orientadores}[3]{
+    \readlist*\listNomeOrientadores{#1}
+    \readlist*\listSobrenomeOrientadores{#2}
+    \readlist*\listTituloOrientadores{#3}
 }
 
 % Coorientador
@@ -160,16 +188,21 @@
 \begin{capa}%
   \savegeometry{Mem}
   \newgeometry{top=2cm,bottom=28mm,left=13mm,right=13mm}
-\SingleSpacing
+
+  \SingleSpacing
   \begin{center}\begin{large}
-    {\ABNTEXchapterfont\bfseries MINISTÉRIO DA DEFESA\\EXÉRCITO BRASILEIRO\\DEPARTAMENTO DE CIÊNCIA E TECNOLOGIA\\INSTITUTO MILITAR DE ENGENHARIA\\ \imprimirProgramaOuDepartamentoCompletoUpercase \par}
-  \vspace*{50mm} 
-  \ABNTEXchapterfont\bfseries\MakeUppercase\imprimirautor\\
-  \vspace*{48mm}
-  \ABNTEXchapterfont\bfseries\MakeUppercase\imprimirtitulo
-  \vfill
-  \MakeUppercase\imprimirlocal \\
-  \MakeUppercase\imprimirdata
+    {\ABNTEXchapterfont\bfseries MINISTÉRIO DA DEFESA\\
+                                EXÉRCITO BRASILEIRO\\
+                        DEPARTAMENTO DE CIÊNCIA E TECNOLOGIA\\
+                            INSTITUTO MILITAR DE ENGENHARIA\\
+                    \imprimirProgramaOuDepartamentoCompletoUpercase \par}
+    \vspace*{50mm} 
+    {\ABNTEXchapterfont\bfseries\imprimirAutores{\\\noindent}{}{uppercase} \par}
+    \vspace*{48mm}
+    {\noindent\ABNTEXchapterfont\bfseries\MakeUppercase\imprimirtitulo}
+    \vfill
+    \MakeUppercase\imprimirlocal \\
+    \MakeUppercase\imprimirdata
   \end{large}\end{center}
   
   \clearpage
@@ -184,11 +217,9 @@
 
 \renewcommand{\folhaderostocontent}{
 \begin{center}
-    {\ABNTEXchapterfont\bfseries\large\MakeUppercase\imprimirautor}
+    {\ABNTEXchapterfont\bfseries\large\imprimirAutores{\\\noindent}{}{uppercase}\par}
     \vspace*{\fill}
-    \begin{center}
-    \ABNTEXchapterfont\bfseries\large\MakeUppercase\imprimirtitulo
-    \end{center}
+    {\noindent\ABNTEXchapterfont\bfseries\large\MakeUppercase\imprimirtitulo\par}
     \vspace*{\fill}
     \abntex@ifnotempty{\imprimirpreambulo}{%
         \hspace{.3\textwidth}
@@ -196,10 +227,12 @@
             \SingleSpacing
             \imprimirpreambulo \par
             \medskip
-            {\imprimirorientadorRotulo~\imprimirorientador\ - \imprimirtituloorientador\par}
-            \abntex@ifnotempty{\imprimircoorientador}{%
-              {\imprimircoorientadorRotulo~\imprimircoorientador\ - \imprimirtitulocoorientador}%
-            }%
+            \parbox[t]{.3\linewidth}{Orientador(es):}
+            \parbox[t]{.7\linewidth}{
+                \foreachitem \nome \in \listNomeOrientadores{
+                    \listNomeOrientadores[\nomecnt] \listSobrenomeOrientadores[\nomecnt], \listTituloOrientadores[\nomecnt] \\
+                }
+            }
         \end{minipage}%
     }%
     \vspace*{\fill}
@@ -234,34 +267,34 @@
     
     \begin{center}
         \fbox{\begin{minipage}[c][10cm]{13.5cm}
-                \small
-                
-                \hspace{0.5cm}\parbox[t]{\textwidth-1cm}{
-                    \imprimirsobrenomeautor, \imprimirnomeautor \par
-                    \hspace{0.5cm}\imprimirtitulo\space / \imprimirautor. --
-                    \imprimirlocal, \imprimirdata. \par
-                    \hspace{0.5cm}\thelastpage\ f.
+            \small
+            
+            \hspace{0.5cm}\parbox[t]{\textwidth-1cm}{
+                \foreachitem \nome \in \listNomeAutores{
+                    \listSobrenomeAutores[\nomecnt], \nome\ifthenelse{\nomecnt<\listNomeAutoreslen}{;}{.}
                 }\par
-                \vspace{0.5cm}
-                \hspace{0.5cm}\parbox[t]{\textwidth-1cm}{
-                    \imprimirorientadorRotulo~\imprimirorientador.\par
-                    % \vspace{0.5cm}
-                    \imprimircoorientadorRotulo~\imprimircoorientador.
-                }\par
-                \vspace{0.5cm}
-                \hspace{0.5cm}\parbox[t]{\textwidth-1cm}{
-                    \imprimirtipodocumentonivelestudo\  (\MakeLowercase{\imprimirnivelestudo})~--~\imprimirinstituicao,\ \imprimirprogramaoudepartamento,\ \imprimirdata.
-                }\par
-                \vspace{0.5cm}
-                \hspace{0.5cm}\parbox[t]{\textwidth-1cm}{
-                    \hspace{0.5cm}
-                    \imprimirpalavraschavefichacatalografica
-                    I. \imprimirsobrenomeorientador, \imprimirnomeorientador, orient.
-                    II. \abntex@ifnotempty{\imprimircoorientador}{%
-                            {\imprimirsobrenomecoorientador, \imprimirnomecoorientador, coorient.  III.}%
-                        }%
-                    Título
-                }
+                \hspace{0.5cm}\imprimirtitulo\space / 
+                \foreachitem \nome \in \listNomeAutores{\nome\ \listSobrenomeAutores[\nomecnt]\ifthenelse{\nomecnt<\listNomeAutoreslen}{\ifthenelse{\nomecnt<\number\numexpr\listNomeAutoreslen-1\relax}{, }{\ e}}{.}
+        } --
+                \imprimirlocal, \imprimirdata. \par
+                \hspace{0.5cm}\thelastpage\ f.
+            }\par
+            \vspace{0.5cm}
+            \hspace{0.5cm}\parbox[t]{\textwidth-1cm}{
+                Orientador(es): 
+                \foreachitem \nome \in \listNomeOrientadores{\nome\ \listSobrenomeOrientadores[\nomecnt]\ifthenelse{\nomecnt<\listNomeOrientadoreslen}{\ifthenelse{\nomecnt<\number\numexpr\listNomeOrientadoreslen-1\relax}{, }{\ e }}{.}}
+            }\par
+            \vspace{0.5cm}
+            \hspace{0.5cm}\parbox[t]{\textwidth-1cm}{
+                \imprimirtipodocumentonivelestudo\  (\MakeLowercase{\imprimirnivelestudo})~--~\imprimirinstituicao,\ \imprimirprogramaoudepartamento,\ \imprimirdata.
+            }\par
+            \vspace{0.5cm}
+            \hspace{0.5cm}\parbox[t]{\textwidth-1cm}{
+                \hspace{0.5cm}
+                \imprimirpalavraschavefichacatalografica
+                \foreachitem \nome \in \listNomeOrientadores{\romannumeral\nomecnt. \listSobrenomeOrientadores[\nomecnt], \nome\ (orient.) }
+                \romannumeral\number\numexpr\listNomeOrientadoreslen+1\relax. Título
+            }
         \end{minipage}}
     \end{center}
     \clearpage
@@ -276,15 +309,15 @@
 \providecommand{\imprimirfolhadeaprovacao}{
     \begin{folhadeaprovacao}
     \begin{center}
-        {\ABNTEXchapterfont\bfseries\large\MakeUppercase\imprimirautor\par}
+        {\ABNTEXchapterfont\bfseries\large\imprimirAutores{\\\noindent}{}{uppercase}\par}
         \vspace*{\fill}
         {\ABNTEXchapterfont\bfseries\Large\imprimirtitulo\par}
         \vspace*{\fill}
         \begin{minipage}{\textwidth}
             \imprimirpreambulo \par
             \smallskip
-            {\imprimirorientadorRotulo~\imprimirorientador\par}
-            {\imprimircoorientadorRotulo~\imprimircoorientador}%
+            Orientador(es): 
+            \foreachitem \nome \in \listNomeOrientadores{\nome\ \listSobrenomeOrientadores[\nomecnt]\ifthenelse{\nomecnt<\listNomeOrientadoreslen}{\ifthenelse{\nomecnt<\number\numexpr\listNomeOrientadoreslen-1\relax}{, }{\ e }}{.}}
         \end{minipage}%
         \vspace*{\fill}
     \end{center}
