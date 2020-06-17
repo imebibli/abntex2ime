@@ -40,7 +40,7 @@
 % ---
 % Pacotes de citações
 % ---
-\usepackage[brazilian,hyperpageref]{backref} % Paginas com as citações na bibl
+%\usepackage[brazilian,hyperpageref]{backref} % Mostra a página onde cada citação foi feita
 \usepackage[num,abnt-etal-list=0,bibjustif]{./abntex2cite} % Citações numéricas (ordem de apresentação)
 %\usepackage[alf,abnt-etal-list=0,bibjustif]{./abntex2cite} % Citações autor-data (ordem alfabética)
 
@@ -49,7 +49,7 @@
 % --- 
 
 % % ---
-% % Configurações do pacote backref
+% % Configurações do pacote backref, SE FOR USAR DESCOMENTE TODO ESSE TRECHO
 % % Usado sem a opção hyperpageref de backref
 % \renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
 % % Texto padrão antes do número das páginas
@@ -236,10 +236,10 @@
 % ----------------------------------------------------------
 \textual
 
-\include{exemplo-intro}
-\include{exemplo-cap-01}
-\include{exemplo-cap-02}
-\include{exemplo-conclusao}
+\input{exemplo-intro}
+\input{exemplo-cap-01}
+\input{exemplo-cap-02}
+\input{exemplo-conclusao}
 
 % ----------------------------------------------------------
 % ELEMENTOS PÓS-TEXTUAIS
@@ -257,7 +257,7 @@
 % ----------------------------------------------------------
 \begin{apendicesenv}
     \partapendices
-    \input{apendice}
+    \input{exemplo-apendice}
 \end{apendicesenv}
 % ---
 
@@ -266,7 +266,7 @@
 % ----------------------------------------------------------
 \begin{anexosenv}
     \partanexos
-    \input{anexo}
+    \input{exemplo-anexo}
 \end{anexosenv}
 
 %---------------------------------------------------------------------
