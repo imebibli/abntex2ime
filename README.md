@@ -23,7 +23,6 @@ Para:
 \usepackage[alf,abnt-etal-list=0,bibjustif]{./abntex2cite} % Citações autor-data (ordem alfabética)
 ```
 
-
 ## Criar e remover arquivos de conteúdo
 
 Arquivos podem ser incluídos no documento com o comando *\input{}*
@@ -56,3 +55,22 @@ Tenha cuidado para adicionar os elementos textuais, o apendice e o anexo nos loc
 ## Outras informações
 
 Mais informações podem ser encontradas em https://www.abntex.net.br/
+
+# Perguntas Frequentes
+
+### Como usar referências com nome e ano do autor (referência alfabética)
+
+Veja a seção **Citações** acima.
+
+### Uso de citações em legendas (figuras, quadros ou tabelas)
+
+O sistema alfa-numério de citação, lista as referências na ordem que elas aparecem no texto. Quando você cita uma referência em uma legenda, ela aparece fora de ordem no lista de referências, pois a citação aparecerá primeiro no sumário e, portanto, antes de outras citações do corpo do texto. Para evitar isso, coloque o texto do sumário diferente do texto do documento no comando _**caption**_ (sem a referência).
+
+```
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[opções]{imagem}
+	\caption[Legenda dessa figura.]{Legenda dessa figura \cite{ALGUMA REFÊRENCIA}.}
+	\label{fig:MANET STACK}
+\end{figure}
+```
