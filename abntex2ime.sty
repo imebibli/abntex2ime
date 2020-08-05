@@ -22,7 +22,7 @@
 
 \ProvidesPackage{abntex2ime}[2019/28/05 Criacao desta customizacao do abnTeX2]
 
-\def\versaoDocumento{v18}
+\def\versaoDocumento{v19}
 
 % ---
 % Pacotes Adicionais para funcionamento do abntex2ime 
@@ -70,12 +70,12 @@
     \def\myNivelEstudo{#1}
     % Graduação, Mestrado ou Doutorado
     \edef\first{#1}\edef\second{Doutorado}\ifx\first\second
-        \def\titulonivelestudo{Doutor em Ciência}
+        \def\titulonivelestudo{Doutor em Ciências}
         \newcommand{\imprimirtipodocumentonivelestudo}{Tese}
         \def\tipodocumentocompleto{Tese de #1}
     \else
         \edef\second{Mestrado}\ifx\first\second
-            \def\titulonivelestudo{Mestre em Ciência}
+            \def\titulonivelestudo{Mestre em Ciências}
             \newcommand{\imprimirtipodocumentonivelestudo}{Dissertação}
             \def\tipodocumentocompleto{Dissertação de #1}
         \else
@@ -314,25 +314,12 @@
 % ----------------------------------------------------------------
 % CONFIGURACAO DO SUMARIO
 % ----------------------------------------------------------------
-\renewcommand{\cftsectionfont}{}
-%%% re-styling the TOC with etoc:
-\usepackage{etoc}
-\makeatletter
-\let\old@chapter\l@chapter
-\let\old@chapternumberline\chapternumberline
-\etocsetstyle{chapter}{}{}
-     {\old@chapter{\old@chapternumberline{\etocnumber}%
-          \etoclink{\MakeUppercase\etocthename}}{\etocpage}}{}%
-\let\old@section\l@section
-\etocsetstyle{section}{}{}
-     {\old@section{\numberline{\etocnumber}\etoclink{\MakeUppercase\etocthename}}{\etocpage}}{}%
-\let\old@subsection\l@subsection
-\etocsetstyle{subsection}{}{}
-     {\old@subsection{\numberline{\etocnumber}\etoclink{\MakeUppercase\etocthename}}{\etocpage}}{}%
-\let\old@subsubsection\l@subsubsection
-\etocsetstyle{subsubsection}{}{}
-     {\old@subsubsection{\numberline{\etocnumber}\etoclink{\MakeUppercase\etocthename}}{\etocpage}}{}%
-\makeatother
+% \makeatletter
+% \let\oldcontentsline\contentsline
+% \def\contentsline#1#2{%
+%     \oldcontentsline{#1}{\MakeTextUppercase{#2}}%
+% }
+% \makeatother
 
 % ---
 % FIM DAS CUSTOMIZACOES IME
