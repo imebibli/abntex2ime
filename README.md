@@ -1,42 +1,76 @@
 # AbnTex 2 IME
 
-Este é o modelo LaTex de documento adotado pelo Instituto Militar de Engenharia como formato de seus trabalhos de tese e dissertação de pós-graduação.
+Este é o modelo LaTex de tese e dissertação de pós-graduação do Instituto Militar de Engenharia.
 
 Os objetivos deste modelo são:
 
-- Padronizar o modelo de texto de trabalhos acadêmicos
-- Acelerar os procedimentos de revisão de trabalhos acadêmicos
-- Manter a aderência às normas da ABNT nos textos produzidos
-- Manter a simplicidade do modelo AbnTex2
+- Padronizar o texto de trabalhos acadêmicos de acordo com as normas da ABNT
+- Acelerar a checagem de formatação dos trabalhos acadêmicos pela biblioteca para a emissão de certificado de conclusão de curso
 
-O modelo se encontra em desenvolvimento e somente receberá número de versão 1.0 quando o primeiro trabalho usando o modelo for aprovado pela Subdivisão de Cursos de Pós-Graduação do IME.
+## Citações
 
-## Migração
+O modelo usa por padrão citações numéricas e com parênteses, e.g. (1), permitido pela ABNT.
 
-Alguns alunos já utilizam o modelo Latex não-oficial do IME, esta sessão tem por objetivo apontar as principais diferenças observadas na migração para este modelo.
-
-### Migração de citações
-
-O modelo não-oficial do IME utiliza a biblioteca de citações *natlib* enquanto este modelo possui seu próprio formato, o *abntex2cite*.
-
-Usando *natlib*, estas são as citações mais usadas e suas representações no texto.
+Se quiser usar o citação alfabética, e.g. (MOREIRA et al., 2019), procure e alterne o comentário do seguinte trecho do arquivo *main.tex*.
 
 ```
-\citet{jon90}  ⇒ Jones et al. (1990)
-\citep{jon90}  ⇒ (Jones et al., 1990)
-\citet*{jon90} ⇒ Jones, Baker, and Williams (1990)
-\citep*{jon90} ⇒ (Jones, Baker, and Williams, 1990)
+De:
+\usepackage[num,abnt-etal-list=0,bibjustif]{./abntex2cite} % Citações numéricas (ordem de apresentação)
+%\usepackage[alf,abnt-etal-list=0,bibjustif]{./abntex2cite} % Citações autor-data (ordem alfabética)
+
+Para:
+%\usepackage[num,abnt-etal-list=0,bibjustif]{./abntex2cite} % Citações numéricas (ordem de apresentação)
+\usepackage[alf,abnt-etal-list=0,bibjustif]{./abntex2cite} % Citações autor-data (ordem alfabética)
 ```
 
-Neste modelo, optamos por citações numéricas e com colchetes, e.g. [1], seguindo um padrão de citação bastante utilizado em artigos internacionais e permitido pela ABNT. Assim, no *abntex2cite* podemos citar da seguinte maneira:
+## Criar e remover arquivos de conteúdo
+
+Arquivos podem ser incluídos no documento com o comando *\input{}*
 
 ```
-\cite{plataforma}        ⇒ [36]
-\citeonline{jon90}       ⇒  36
-\citeyear{jon90}         ⇒ 2017
-\citeauthor{jon90}       ⇒  Bernardo, Silva e Rosa[36]
-\citeauthoronline{jon90} ⇒ Bernardo, Silva e Rosa
-\citetext{plataforma}    ⇒  BERNARDO, R. M.; SILVA,L. C. B. da; ROSA, P. F. F. Concepção de uma plataforma de vant de baixo custo do tipo quadricóptero para uso em pesquisas. In:Workshop de Comunicação em SistemasEmbarcados Críticos (WoCCES). Belém: SBC, 2017. p. 56–65.
+\input{nome-do-arquivo_sem-tex}
 ```
 
-A norma faculta o uso de referências no modo alfabético, para usá-lo consulte a documentação do [*abntex2cite*](http://mirrors.ibiblio.org/CTAN/macros/latex/contrib/abntex2/doc/abntex2cite.pdf).
+Se o seu arquivo se chama resultados.tex, então:
+
+```
+\input{resultados}
+```
+
+Para remover os arquivos de exemplo do seu documento procure pelas linhas abaixo no arquivo *main.tex*.
+
+```
+\input{exemplo-intro}
+\input{exemplo-cap-01}
+\input{exemplo-cap-02}
+\input{exemplo-conclusao}
+...
+\input{exemplo-apendice}
+...
+\input{exemplo-anexo}
+```
+
+Tenha cuidado para adicionar os elementos textuais, o apendice e o anexo nos locais onde estão no arquivo *main.tex*, pois a ordem e o local onde aparecem influi no documento final gerado.
+
+## Outras informações
+
+Mais informações podem ser encontradas em https://www.abntex.net.br/
+
+# Perguntas Frequentes
+
+### Como usar referências com nome e ano do autor (referência alfabética)
+
+Veja a seção **Citações** acima.
+
+### Uso de citações em legendas (figuras, quadros ou tabelas)
+
+O sistema alfa-numério de citação, lista as referências na ordem que elas aparecem no texto. Quando você cita uma referência em uma legenda, ela aparece fora de ordem no lista de referências, pois a citação aparecerá primeiro no sumário e, portanto, antes de outras citações do corpo do texto. Para evitar isso, coloque o texto do sumário diferente do texto do documento no comando _**caption**_ (sem a referência).
+
+```
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[opções]{imagem}
+	\caption[Legenda dessa figura.]{Legenda dessa figura \cite{ALGUMA REFÊRENCIA}.}
+	\label{fig:MANET STACK}
+\end{figure}
+```
