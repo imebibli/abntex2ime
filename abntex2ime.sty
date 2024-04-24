@@ -135,7 +135,7 @@
 \providecommand{\imprimirpalavraschavefichacatalografica}{}
 \newcommand{\palavraschave}[1]{
 \readlist*\mylistpalavraschave{#1}
-\renewcommand{\imprimirpalavraschave}{\foreachitem\x\in\mylistpalavraschave[]{\x.\ifx\xcnt\mylistpalavraschavelen\else \ \fi}}
+\renewcommand{\imprimirpalavraschave}{\foreachitem\x\in\mylistpalavraschave[]{\x\ifx\xcnt\mylistpalavraschavelen.\else ;\ \fi}}
 \renewcommand{\imprimirpalavraschavefichacatalografica}{\foreachitem\x\in\mylistpalavraschave[]{\xcnt . \x . }}
 }
 
@@ -143,7 +143,7 @@
 \providecommand{\imprimirkeywords}{}
 \newcommand{\keywords}[1]{
 \readlist*\mylistkeywords{#1}
-\renewcommand{\imprimirkeywords}{\foreachitem\x\in\mylistkeywords[]{\x.\ifx\xcnt\mylistkeywordslen\else \ \fi}}
+\renewcommand{\imprimirkeywords}{\foreachitem\x\in\mylistkeywords[]{\x\ifx\xcnt\mylistkeywordslen.\else ;\ \fi}}
 }
 
 % Data Defesa
