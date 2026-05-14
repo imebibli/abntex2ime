@@ -1004,10 +1004,10 @@
 \setlength{\ABNTEXsignwidth}{8cm}
    % thickness of the line
 \newlength{\ABNTEXsignthickness}
-\setlength{\ABNTEXsignthickness}{1pt}
+\setlength{\ABNTEXsignthickness}{0pt}
    % ammount of space left between previous text and th signature line
 \newlength{\ABNTEXsignskip}
-\setlength{\ABNTEXsignskip}{0.7cm}
+\setlength{\ABNTEXsignskip}{0cm}
    % \assinatura{name} -> types a line with name under the line, centralized
    % \assinatura*{name} -> Creates the box with the line and name under
    %     it, but the box has no position assigned. However the line and the
@@ -1017,7 +1017,7 @@
 \makeatother
    % assinatura com estrela
 \newcommand{\ABNTEXsign}[1]{%
-  \parbox[t]{\ABNTEXsignwidth}{\SingleSpacing\vspace*{\ABNTEXsignskip}\centering%
+  \parbox[t]{\ABNTEXsignwidth}{\SingleSpacing\vspace*{\ABNTEXsignskip}%
   \rule{\ABNTEXsignwidth}{\ABNTEXsignthickness}\\%
   \nopagebreak #1\par}%
 }
