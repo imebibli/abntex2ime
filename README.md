@@ -21,9 +21,11 @@ De:
 Para:
 \selectlanguage{english}
 %\selectlanguage{brazil}
+```
 
 Também comente as linhas de inserção da lista de quadros, pois trabalhos em inglês não diferenciam quadros de tabelas, como na ABNT
 
+```
 De:
 \pdfbookmark[0]{\listofquadrosname}{loq}
 \listofquadros*
@@ -33,6 +35,7 @@ Para:
 %\pdfbookmark[0]{\listofquadrosname}{loq}
 %\listofquadros*
 %\cleardoublepage
+```
 
 Também evite o uso do comando \citeonline na versão em inglês, prefira o comando \cite.
 
