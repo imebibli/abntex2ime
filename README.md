@@ -1,11 +1,40 @@
 # AbnTex 2 IME
 
-Este é o modelo LaTex de tese e dissertação de pós-graduação do Instituto Militar de Engenharia.
+Este é o modelo LaTex de trabalhos (tese, dissertação e PFC) do Instituto Militar de Engenharia.
 
 Os objetivos deste modelo são:
 
 - Padronizar o texto de trabalhos acadêmicos de acordo com as normas da ABNT
-- Acelerar a checagem de formatação dos trabalhos acadêmicos pela biblioteca para a emissão de certificado de conclusão de curso
+- Acelerar a checagem de formatação dos trabalhos acadêmicos pela biblioteca para a emissão de diploma de conclusão de curso
+
+## Versão em inglês
+
+O modelo usa por padrão o idioma português.
+
+Se quiser usar o inglês, procure e alterne o comentário do seguinte trecho do arquivo *main.tex*.
+
+```
+De:
+%\selectlanguage{english}
+\selectlanguage{brazil}
+
+Para:
+\selectlanguage{english}
+%\selectlanguage{brazil}
+
+Também comente as linhas de inserção da lista de quadros, pois trabalhos em inglês não diferenciam quadros de tabelas, como na ABNT
+
+De:
+\pdfbookmark[0]{\listofquadrosname}{loq}
+\listofquadros*
+\cleardoublepage
+
+Para:
+%\pdfbookmark[0]{\listofquadrosname}{loq}
+%\listofquadros*
+%\cleardoublepage
+
+Também evite o uso do comando \citeonline na versão em inglês, prefira o comando \cite.
 
 ## Citações
 
